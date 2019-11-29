@@ -30,7 +30,7 @@ function App() {
         Accounts: {accounts} NetworkID: {networkId} NetworkNAme: {networkName}{" "}
         ProviderName: {providerName}
       </p>
-      <UsePortal>Thinking with Portals</UsePortal>
+      <UsePortal address={accounts}>Thinking with Portals</UsePortal>
     </div>
   );
 }
