@@ -3,10 +3,15 @@ import ReactDOM from "react-dom";
 import { useWeb3Injected } from "@openzeppelin/network/react";
 import "core-js/stable";
 import "regenerator-runtime/runtime";
-import UsePortal from "./components/UsePortal";
+import Web3Address from "./components/Web3Address";
+import Web3NetworkId from "./components/Web3NetworkId";
+import Web3ProviderName from "./components/Web3ProviderName";
+import Web3NetworkName from "./components/Web3NetworkName";
+import Web3EnableButton from "./components/Web3EnableButton"
+
 
 function App() {
-  const [count, setCount] = useState(0);
+
   const injected = useWeb3Injected();
   const {
     accounts,
@@ -17,21 +22,18 @@ function App() {
     connected
   } = injected;
 
-  useEffect(async () => {
-    await injected.requestAuth();
-  }, []);
+  // useEffect(async () => {
+  //   await injected.requestAuth();
+  // }, []);
 
-  console.log(injected);
   return (
     <div>
-      <p>You clicked {count} times.</p>
-      <button onClick={() => setCount(count + 1)}>Click Me</button>
-      <p>
-        Accounts: {accounts} NetworkID: {networkId} NetworkNAme: {networkName}{" "}
-        ProviderName: {providerName}
-      </p>
-      <UsePortal address={accounts}>Thinking with Portals</UsePortal>
-    </div>
+      <Web3Address address={accounts}></Web3Address>
+      <Web3NetworkId networkId={networkId}></Web3NetworkId>
+      <Web3ProviderName providerName={providerName}></Web3ProviderName>
+      <Web3NetworkName networkName={networkName}></Web3NetworkName>
+      <Web3EnableButton injected={injected}></Web3EnableButton>
+      </div>
   );
 }
 
