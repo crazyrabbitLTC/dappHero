@@ -7,7 +7,7 @@ const child = document.getElementById("box-profileImageLocation");
 
 function BoxProfileImage(props) {
 
-  if (props.image && props.image[0].contentUrl["/"]) {
+  if (parent && child && props.image && props.image[0].contentUrl["/"]) {
     const ipfs = props.image[0].contentUrl["/"];
     $(parent).remove();
     return ReactDOM.createPortal(
@@ -18,7 +18,7 @@ function BoxProfileImage(props) {
       child
     );
   } else {
-    return ReactDOM.createPortal(<Fragment> </Fragment>, child);
+    return <Fragment></Fragment>;
   }
 }
 export default BoxProfileImage;
