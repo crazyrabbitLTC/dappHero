@@ -28,4 +28,17 @@ For 3Box the currently supported ID's are:
 
 Clearly there is a lot of work to do!!!!
 
+To create a new page, at the moment just duplicate an old one. (Easy)
 
+Or on each page, in the page settings (eventually this should be site wide) add in the `Inside <head> tag`
+this code: 
+```
+<script src="https://unpkg.com/react@16.4.1/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@16.4.1/umd/react-dom.production.min.js"></script>
+```
+
+and in the `Before </body>` section add: 
+<script src="https://webflow-react-test.s3.amazonaws.com/bundle.js"></script>
+
+Or if you can figure out how this was made- (I'll put up instructions soon!) You can add your own bundle.
+This bundle will probably break frequently as it's my bundle and I'll be hacking on it. 
