@@ -1,9 +1,9 @@
 import React, { useState, useEffect, Fragment } from "react";
 import $ from "jquery";
 import Box from "3box";
-import BoxName from "./Web3Box/BoxName";
-import BoxProfileImage from "./Web3Box/BoxProfileImage";
-import BoxWebsite from "./Web3Box/BoxWebsite";
+import BoxName from "../containers/Web3Box/BoxName";
+import BoxProfileImage from "../containers/Web3Box/BoxProfileImage";
+import BoxWebsite from "../containers/Web3Box/BoxWebsite";
 
 function Web3Box(props) {
   const { injected } = props;
