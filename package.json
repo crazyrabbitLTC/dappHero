@@ -1,7 +1,8 @@
 {
-  "name": "portal-react",
-  "version": "1.0.0",
-  "description": "",
+  "name": "dappHero",
+  "version": "0.0.1",
+  "description": "Build Web3 Dapps in flash like a hero with WebFlow",
+  "email": "dennison@dennisonbertram.com",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -11,8 +12,8 @@
     "bd": "npm run build && npm run deploy"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "Dennison Bertram",
+  "license": "MIT",
   "devDependencies": {
     "@babel/core": "^7.7.4",
     "@babel/preset-env": "^7.7.4",
