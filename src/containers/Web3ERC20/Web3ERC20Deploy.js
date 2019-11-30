@@ -1,6 +1,6 @@
 import React, { useState, useEffect, Fragment } from "react";
 import deployContract from "./utils/deployContract";
-import $ from "jquery";
+
 
 function Web3ERC20Deploy(props) {
   const { injected } = props;
