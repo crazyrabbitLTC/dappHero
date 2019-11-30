@@ -1,6 +1,6 @@
 import React, { useState, useEffect, Fragment } from "react";
 import ReactDOM from "react-dom";
-import uuidv1 from  'uuid/v1';
+import uuidv1 from "uuid/v1";
 import $ from "jquery";
 import Web3Balance from "./Web3Balance";
 
@@ -11,25 +11,20 @@ function Web3BalanceContainer(props) {
 
   const [balance, setBalance] = useState(0);
   useEffect(() => {
- 
-
     const getBalance = async () => {
       let balance;
       try {
         balance = await lib.eth.getBalance(accounts[0]);
         balance = lib.utils.fromWei(balance, "ether");
-        console.log(balance);
       } catch (error) {
         console.log(error);
       }
       setBalance(balance);
     };
 
-    console.log("The lib", lib)
     if (connected && lib) {
       getBalance();
     }
-    
   }, [balanceLocations]);
 
   if (
