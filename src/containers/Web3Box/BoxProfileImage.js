@@ -2,21 +2,37 @@ import React, { useRef, useEffect, Fragment } from "react";
 import ReactDOM from "react-dom";
 import $ from "jquery";
 
-const parent = document.getElementById("box-profileImage");
-const child = document.getElementById("box-profileImageLocation");
-
 function BoxProfileImage(props) {
+  const { injected, image } = props;
+  const { connected, accounts } = injected;
+  const profileImageParentLocations = $(
+    "*[id*=web3-box-profileImageParent]:visible"
+  );
+  const profileImageChildLocations = $(
+    "*[id*=web3-box-profileImageChild]:visible"
+  );
 
-  if (parent && child && props.image && props.image[0].contentUrl["/"]) {
-    const ipfs = props.image[0].contentUrl["/"];
-    $(parent).remove();
-    return ReactDOM.createPortal(
-      <img
-        src={`https://cloudflare-ipfs.com/ipfs/${ipfs}`}
-        className={`profileimage`}
-      ></img>,
-      child
-    );
+  if (
+    profileImageParentLocations &&
+    profileImageParentLocations.length > 0 &&
+    profileImageChildLocations &&
+    profileImageChildLocations.length > 0 &&
+    connected &&
+    accounts.length > 0 &&
+    image &&
+    image[0].contentUrl["/"]
+  ) {
+    const ipfs = image[0].contentUrl["/"];
+    return profileImageParentLocations.map(e => {
+      $(profileImageParentLocations[e]).remove();
+      return ReactDOM.createPortal(
+        <img
+          src={`https://cloudflare-ipfs.com/ipfs/${ipfs}`}
+          className={`profileimage`}
+        ></img>,
+        profileImageChildLocations
+      );
+    });
   } else {
     return <Fragment></Fragment>;
   }

@@ -1,11 +1,11 @@
 import React, { useState, useEffect, Fragment } from "react";
 import $ from "jquery";
 import Box from "3box";
-import BoxName from "../containers/Web3Box/BoxName";
-import BoxProfileImage from "../containers/Web3Box/BoxProfileImage";
-import BoxWebsite from "../containers/Web3Box/BoxWebsite";
+import BoxName from "./BoxName";
+import BoxProfileImage from "./BoxProfileImage";
+import BoxWebsite from "./BoxWebsite";
 
-function Web3Box(props) {
+function Web3BoxContainer(props) {
   const { injected } = props;
   const { accounts } = injected;
 
@@ -34,4 +34,4 @@ function Web3Box(props) {
     </Fragment>
   );
 }
-export default Web3Box;
+export default Web3BoxContainer;

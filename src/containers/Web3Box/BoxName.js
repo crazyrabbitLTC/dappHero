@@ -2,21 +2,34 @@ import React, { useRef, useEffect, Fragment } from "react";
 import ReactDOM from "react-dom";
 import $ from "jquery";
 
-const parent = document.getElementById("box-name");
 
 
 function BoxName(props) {
-  
-  const {injected} = props;
- const {connected, accounts} = injected;
+  const { injected, name } = props;
+  const { connected, accounts } = injected;
+  const boxNameLocations = $("*[id*=web3-box-name]:visible");
 
- if(connected && accounts.length > 0){
-  $(parent).empty();
-  return ReactDOM.createPortal(<Fragment>{props.name}</Fragment>, parent);
- } else {
-   return (<Fragment></Fragment>)
- }
-
-
+  if (
+    boxNameLocations &&
+    boxNameLocations.length > 0 &&
+    connected &&
+    accounts.length > 0
+  ) {
+    return (
+      boxNameLocations.map(e => {
+        $(boxNameLocations[e]).empty();
+        return (
+          ReactDOM.createPortal(<Fragment>{props.name}</Fragment>, parent)
+        )
+      })
+    )
+  } else {
+    return <Fragment></Fragment>;
+  }
 }
 export default BoxName;
+
+
+
+// $(parent).empty();
+// return ReactDOM.createPortal(<Fragment>{props.name}</Fragment>, parent);

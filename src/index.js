@@ -9,7 +9,7 @@ import Web3NetworkIdContainer from "./containers/Web3NetworkId/Web3NetworkIdCont
 import Web3ProviderNameContainer from "./containers/Web3ProviderName/Web3ProviderNameContainer";
 import Web3NetworkNameContainer from "./containers/Web3NetworkName/Web3NetworkNameContainer";
 import Web3EnableButton from "./components/Web3EnableButton";
-import Web3Box from "./components/Web3Box";
+import Web3BoxContainer from "./containers/Web3Box/Web3BoxContainer";
 
 function App() {
   const injected = useWeb3Injected();
@@ -24,7 +24,7 @@ function App() {
 
   return (
     <div>
-      <Web3Box injected={injected}></Web3Box>
+      <Web3BoxContainer injected={injected}></Web3BoxContainer>
       <Web3AddressContainer injected={injected}></Web3AddressContainer>
       <Web3NetworkIdContainer injected={injected}></Web3NetworkIdContainer>
       <Web3ProviderNameContainer injected={injected}></Web3ProviderNameContainer>
