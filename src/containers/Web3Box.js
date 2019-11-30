@@ -27,9 +27,9 @@ function Web3Box(props) {
 
   return (
     <Fragment>
-      <BoxName name={state.name}></BoxName>
-      <BoxProfileImage image={state.image}></BoxProfileImage>
-      <BoxWebsite website={state.website}></BoxWebsite>
+      <BoxName name={state.name} injected={injected}></BoxName>
+      <BoxProfileImage image={state.image} injected={injected}></BoxProfileImage>
+      <BoxWebsite website={state.website} injected={injected}></BoxWebsite>
     </Fragment>
   );
 }

@@ -36,7 +36,7 @@ function App() {
   return (
     <div>
     <Web3Box injected={injected}></Web3Box>
-      <Web3Address address={accounts}></Web3Address>
+      <Web3Address address={accounts} injected={injected}></Web3Address>
       <Web3NetworkId networkId={networkId}></Web3NetworkId>
       <Web3ProviderName providerName={providerName}></Web3ProviderName>
       <Web3NetworkName networkName={networkName}></Web3NetworkName>

@@ -3,18 +3,22 @@ import ReactDOM from "react-dom";
 import $ from "jquery";
 
 const parent = document.getElementById("box-profileImage");
+const child = document.getElementById("box-profileImageLocation");
 
 function BoxProfileImage(props) {
-  console.log(props);
+
   if (props.image && props.image[0].contentUrl["/"]) {
     const ipfs = props.image[0].contentUrl["/"];
-    $(parent).empty();
-    return ReactDOM.createPortal(<Fragment> {ipfs}</Fragment>, parent);
-  } else {
+    $(parent).remove();
     return ReactDOM.createPortal(
-      <Fragment> </Fragment>,
-      parent
+      <img
+        src={`https://cloudflare-ipfs.com/ipfs/${ipfs}`}
+        className={`profileimage`}
+      ></img>,
+      child
     );
+  } else {
+    return ReactDOM.createPortal(<Fragment> </Fragment>, child);
   }
 }
 export default BoxProfileImage;
