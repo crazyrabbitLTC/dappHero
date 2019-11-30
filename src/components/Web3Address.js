@@ -11,7 +11,7 @@ function Web3Address(props) {
   const { connected, accounts } = injected;
 
   if (connected && accounts.length > 0) {
-    return ReactDOM.createPortal(<Fragment>{props.address}</Fragment>, parent);
+    return ReactDOM.createPortal(<Fragment>{(props.address).substr(1,5)}...</Fragment>, parent);
   } else {
     return <Fragment></Fragment>;
   }
