@@ -2,16 +2,26 @@ import React, { useRef, useEffect, Fragment } from "react";
 import ReactDOM from "react-dom";
 import $ from "jquery";
 
-const parent = document.getElementById("box-website");
-
-
 function BoxWebsite(props) {
-  const { injected } = props;
+  const { injected , website} = props;
   const { connected, accounts } = injected;
+  const boxWebsiteLocations = $("*[id*=web3-box-website]:visible");
 
-  if (connected && accounts.length > 0) {
-    $(parent).empty();
-    return ReactDOM.createPortal(<Fragment>{props.website}</Fragment>, parent);
+  if (
+    boxWebsiteLocations &&
+    boxWebsiteLocations.length > 0 &&
+    connected &&
+    accounts.length > 0
+  ) {
+    return boxWebsiteLocations.map(e => {
+      $(boxWebsiteLocations[e]).empty();
+      return ReactDOM.createPortal(
+        <Fragment>{website}</Fragment>,
+        boxWebsiteLocations[e]
+      );
+    });
+
+    return;
   } else {
     return <Fragment></Fragment>;
   }

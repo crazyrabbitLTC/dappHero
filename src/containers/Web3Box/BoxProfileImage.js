@@ -24,13 +24,13 @@ function BoxProfileImage(props) {
   ) {
     const ipfs = image[0].contentUrl["/"];
     return profileImageParentLocations.map(e => {
-      $(profileImageParentLocations[e]).remove();
+      $(profileImageChildLocations[e]).remove();
       return ReactDOM.createPortal(
         <img
           src={`https://cloudflare-ipfs.com/ipfs/${ipfs}`}
           className={`profileimage`}
         ></img>,
-        profileImageChildLocations
+        profileImageParentLocations[e]
       );
     });
   } else {

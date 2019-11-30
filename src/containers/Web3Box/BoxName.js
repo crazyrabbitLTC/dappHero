@@ -19,7 +19,7 @@ function BoxName(props) {
       boxNameLocations.map(e => {
         $(boxNameLocations[e]).empty();
         return (
-          ReactDOM.createPortal(<Fragment>{props.name}</Fragment>, parent)
+          ReactDOM.createPortal(<Fragment>{name}</Fragment>, boxNameLocations[e])
         )
       })
     )
@@ -29,7 +29,3 @@ function BoxName(props) {
 }
 export default BoxName;
 
-
-
-// $(parent).empty();
-// return ReactDOM.createPortal(<Fragment>{props.name}</Fragment>, parent);
