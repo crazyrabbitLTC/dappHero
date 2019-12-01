@@ -1,13 +1,21 @@
-import React, { useRef, useEffect, Fragment } from "react";
+import React, {Fragment } from "react";
 import ReactDOM from "react-dom";
-import $ from "jquery";
 
-function Web3NetworkName(props) {
-  const { networkName, domElement } = props;
+class Web3NetworkName extends React.Component {
+  constructor(props) {
+    super(props);
 
-  $(domElement).empty();
+    while (this.props.domElement.firstChild) {
+      this.props.domElement.removeChild(this.props.domElement.firstChild);
+    }
+  }
 
-
-  return ReactDOM.createPortal(<Fragment>{networkName}</Fragment>, domElement);
+  render() {
+    return ReactDOM.createPortal(
+      <Fragment>{this.props.networkName}</Fragment>,
+      document.getElementById(this.props.domElement.id)
+    );
+  }
 }
+
 export default Web3NetworkName;

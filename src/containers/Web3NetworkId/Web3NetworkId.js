@@ -1,14 +1,21 @@
-import React, { useRef, useEffect, Fragment } from "react";
+import React, { Fragment } from "react";
 import ReactDOM from "react-dom";
-import $ from "jquery";
 
-function Web3NetworkId(props) {
-  const { networkId, domElement } = props;
+class Web3NetworkId extends React.Component {
+  constructor(props) {
+    super(props);
 
-  $(domElement).text((networkId))
-  return null;
+    while (this.props.domElement.firstChild) {
+      this.props.domElement.removeChild(this.props.domElement.firstChild);
+    }
+  }
 
-  // $(domElement).empty();
-  // return ReactDOM.createPortal(<Fragment>{networkId}</Fragment>, domElement);
+  render() {
+    return ReactDOM.createPortal(
+      <Fragment>{this.props.networkId}</Fragment>,
+      document.getElementById(this.props.domElement.id)
+    );
+  }
 }
+
 export default Web3NetworkId;

@@ -1,13 +1,21 @@
-import React, { useRef, useEffect, Fragment } from "react";
+import React, { Fragment } from "react";
 import ReactDOM from "react-dom";
-import $ from "jquery";
 
-function Web3ProviderName(props) {
-  const { providerName, domElement } = props;
+class Web3ProviderName extends React.Component {
+  constructor(props) {
+    super(props);
 
-  // $(domElement).empty();
-  // return ReactDOM.createPortal(<Fragment>{providerName}</Fragment>, domElement);
-  $(domElement).text((providerName))
-  return null;
+    while (this.props.domElement.firstChild) {
+      this.props.domElement.removeChild(this.props.domElement.firstChild);
+    }
+  }
+
+  render() {
+    return ReactDOM.createPortal(
+      <Fragment>{this.props.providerName}</Fragment>,
+      document.getElementById(this.props.domElement.id)
+    );
+  }
 }
+
 export default Web3ProviderName;
