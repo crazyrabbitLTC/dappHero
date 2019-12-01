@@ -13,6 +13,7 @@ import Web3ProviderNameContainer from "./containers/Web3ProviderName/Web3Provide
 import Web3NetworkNameContainer from "./containers/Web3NetworkName/Web3NetworkNameContainer";
 import Web3EnableButton from "./containers/Web3EnableButton/Web3EnableButton";
 import Web3BoxContainer from "./containers/Web3Box/Web3BoxContainer";
+import Web3GasPriceContainer from "./containers/Web3GasPrice/Web3GasPriceContainer";
 
 function App() {
   const injected = useWeb3Injected();
@@ -24,9 +25,8 @@ function App() {
       case "address":
         return (
           <Web3AddressContainer
-          key={uuidv1()}
+            key={uuidv1()}
             injected={injected}
-            
             domElement={request.el}
           ></Web3AddressContainer>
         );
@@ -35,7 +35,7 @@ function App() {
       case "networkId":
         return (
           <Web3NetworkIdContainer
-          key={uuidv1()}
+            key={uuidv1()}
             injected={injected}
             domElement={request.el}
           ></Web3NetworkIdContainer>
@@ -45,7 +45,7 @@ function App() {
       case "providerName":
         return (
           <Web3ProviderNameContainer
-          key={uuidv1()}
+            key={uuidv1()}
             injected={injected}
             domElement={request.el}
           ></Web3ProviderNameContainer>
@@ -55,7 +55,8 @@ function App() {
       case "networkName":
         return (
           <Web3NetworkNameContainer
-          key={uuidv1()}
+            key={request.index}
+            keyValue={request.index}
             injected={injected}
             domElement={request.el}
           ></Web3NetworkNameContainer>
@@ -65,7 +66,7 @@ function App() {
       case "enableButton":
         return (
           <Web3EnableButton
-          key={request.index} //Needed to prevent React Key issue
+            key={request.index} //Needed to prevent React Key issue
             injected={injected}
             domElement={request.el}
           ></Web3EnableButton>
@@ -75,10 +76,21 @@ function App() {
       case "balance":
         return (
           <Web3BalanceContainer
-          key={uuidv1()}
+            key={uuidv1()}
             injected={injected}
             domElement={request.el}
           ></Web3BalanceContainer>
+        );
+        break;
+
+      case "gasPrice":
+        return (
+          <Web3GasPriceContainer
+          key={request.index}
+          keyValue={request.index}
+            injected={injected}
+            domElement={request.el}
+          ></Web3GasPriceContainer>
         );
         break;
 

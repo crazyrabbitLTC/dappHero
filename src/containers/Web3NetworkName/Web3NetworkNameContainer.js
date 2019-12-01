@@ -5,19 +5,18 @@ import $ from "jquery";
 import Web3NetworkName from "./Web3NetworkName";
 
 function Web3NetworkNameContainer(props) {
-  const { injected, domElement } = props;
+  const { injected, domElement, keyValue } = props;
   const { connected, accounts, networkName } = injected;
-
   if (connected && accounts.length > 0) {
     return (
       <Web3NetworkName
         networkName={networkName}
         domElement={domElement}
-        key={uuidv1()}
+        key={keyValue}
       ></Web3NetworkName>
     );
   } else {
-    return <Fragment></Fragment>;
+    return <Fragment key={keyValue}></Fragment>;
   }
 }
 

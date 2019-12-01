@@ -5,8 +5,10 @@ import $ from "jquery";
 function Web3NetworkId(props) {
   const { networkId, domElement } = props;
 
-  $(domElement).empty();
+  $(domElement).text((networkId))
+  return null;
 
-  return ReactDOM.createPortal(<Fragment>{networkId}</Fragment>, domElement);
+  // $(domElement).empty();
+  // return ReactDOM.createPortal(<Fragment>{networkId}</Fragment>, domElement);
 }
 export default Web3NetworkId;

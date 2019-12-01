@@ -7,6 +7,7 @@ function Web3NetworkName(props) {
 
   $(domElement).empty();
 
+
   return ReactDOM.createPortal(<Fragment>{networkName}</Fragment>, domElement);
 }
 export default Web3NetworkName;
