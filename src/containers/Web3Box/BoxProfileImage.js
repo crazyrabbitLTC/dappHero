@@ -13,6 +13,10 @@ class BoxProfileImage extends React.Component {
       this.props.domElement.id,
     )
 
+
+
+
+
     this.imageElement.setAttribute(
       'src',
       `https://cloudflare-ipfs.com/ipfs/${ipfsHash}`,

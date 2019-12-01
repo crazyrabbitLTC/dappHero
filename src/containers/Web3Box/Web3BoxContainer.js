@@ -27,7 +27,6 @@ function Web3BoxContainer(props) {
   const reducer = request => {
     switch (request.method) {
       case 'name':
-        
         return (
           <BoxName
             domElement={request.el}
@@ -39,15 +38,15 @@ function Web3BoxContainer(props) {
         break
 
       case 'profileImage':
-          const image = state.image || null;
-        return ( image ? 
+        const image = state.image || null
+        return image ? (
           <BoxProfileImage
             domElement={request.el}
             image={image}
             injected={injected}
             key={index}
-          ></BoxProfileImage> : null
-        )
+          ></BoxProfileImage>
+        ) : null
         break
 
       case 'website':
