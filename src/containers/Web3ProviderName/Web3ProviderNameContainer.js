@@ -5,26 +5,16 @@ import $ from "jquery";
 import Web3providerName from "./Web3ProviderName";
 
 function Web3providerNameContainer(props) {
-  const { injected } = props;
+  const { injected, domElement } = props;
   const { connected, accounts, providerName } = injected;
-  const providerNameLocations = $("*[id*=web3-providerName]:visible");
 
-  if (
-    providerNameLocations &&
-    providerNameLocations.length > 0 &&
-    connected &&
-    accounts.length > 0
-  ) {
+  if (connected && accounts.length > 0) {
     return (
-      <Fragment>
-        {providerNameLocations.map((e, index) => (
-          <Web3providerName
-            providerName={providerName}
-            domElement={providerNameLocations[e]}
-            key={uuidv1()}
-          ></Web3providerName>
-        ))}
-      </Fragment>
+      <Web3providerName
+        providerName={providerName}
+        domElement={domElement}
+        key={uuidv1()}
+      ></Web3providerName>
     );
   } else {
     return <Fragment></Fragment>;

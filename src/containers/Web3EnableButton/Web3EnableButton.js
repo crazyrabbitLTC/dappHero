@@ -2,19 +2,19 @@ import React, { useRef, useEffect, Fragment } from "react";
 import ReactDOM from "react-dom";
 import $ from "jquery";
 
-const parent = document.getElementById("web3-enableButton");
-$(parent).empty();
 
 function Web3EnableButton(props) {
-  const { injected } = props;
+  const { injected, domElement } = props;
   const { connected, accounts } = injected;
+
+  $(domElement).empty();
 
   const web3Enable = async () => {
     await injected.requestAuth();
   };
 
   if (connected && accounts.length > 0) {
-    return ReactDOM.createPortal(<a>Web3 Connected</a>, parent);
+    return ReactDOM.createPortal(<a>Web3 Connected</a>, domElement);
   } else {
     return ReactDOM.createPortal(
       <a
@@ -24,7 +24,7 @@ function Web3EnableButton(props) {
       >
         enable MetaMask
       </a>,
-      parent
+      domElement
     );
   }
 }

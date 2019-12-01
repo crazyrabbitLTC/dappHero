@@ -9,7 +9,7 @@ import Web3BalanceContainer from "./containers/Web3Balance/Web3BalanceContainer"
 import Web3NetworkIdContainer from "./containers/Web3NetworkId/Web3NetworkIdContainer";
 import Web3ProviderNameContainer from "./containers/Web3ProviderName/Web3ProviderNameContainer";
 import Web3NetworkNameContainer from "./containers/Web3NetworkName/Web3NetworkNameContainer";
-import Web3EnableButton from "./components/Web3EnableButton";
+import Web3EnableButton from "./containers/Web3EnableButton/Web3EnableButton";
 import Web3BoxContainer from "./containers/Web3Box/Web3BoxContainer";
 
 function App() {
@@ -38,7 +38,10 @@ function App() {
 
       case "networkId":
         return (
-          <Web3NetworkIdContainer injected={injected}></Web3NetworkIdContainer>
+          <Web3NetworkIdContainer
+            injected={injected}
+            domElement={request.el}
+          ></Web3NetworkIdContainer>
         );
         break;
 
@@ -46,6 +49,7 @@ function App() {
         return (
           <Web3ProviderNameContainer
             injected={injected}
+            domElement={request.el}
           ></Web3ProviderNameContainer>
         );
         break;
@@ -54,17 +58,26 @@ function App() {
         return (
           <Web3NetworkNameContainer
             injected={injected}
+            domElement={request.el}
           ></Web3NetworkNameContainer>
         );
         break;
 
       case "enableButton":
-        return <Web3EnableButton injected={injected}></Web3EnableButton>;
+        return (
+          <Web3EnableButton
+            injected={injected}
+            domElement={request.el}
+          ></Web3EnableButton>
+        );
         break;
 
       case "balance":
         return (
-          <Web3BalanceContainer injected={injected}></Web3BalanceContainer>
+          <Web3BalanceContainer
+            injected={injected}
+            domElement={request.el}
+          ></Web3BalanceContainer>
         );
         break;
 

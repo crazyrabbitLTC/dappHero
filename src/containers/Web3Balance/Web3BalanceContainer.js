@@ -5,11 +5,11 @@ import $ from "jquery";
 import Web3Balance from "./Web3Balance";
 
 function Web3BalanceContainer(props) {
-  const { injected } = props;
+  const { injected, domElement } = props;
   const { connected, accounts, lib } = injected;
-  const balanceLocations = $("*[id*=web3-balance]:visible");
 
   const [balance, setBalance] = useState(0);
+
   useEffect(() => {
     const getBalance = async () => {
       let balance;
@@ -25,24 +25,15 @@ function Web3BalanceContainer(props) {
     if (connected && lib) {
       getBalance();
     }
-  }, [balanceLocations]);
+  }, [connected]);
 
-  if (
-    balanceLocations &&
-    balanceLocations.length > 0 &&
-    connected &&
-    accounts.length > 0
-  ) {
+  if (connected && accounts.length > 0) {
     return (
-      <Fragment>
-        {balanceLocations.map((e, index) => (
-          <Web3Balance
-            balance={balance}
-            domElement={balanceLocations[e]}
-            key={uuidv1()}
-          ></Web3Balance>
-        ))}
-      </Fragment>
+      <Web3Balance
+        balance={balance}
+        domElement={domElement}
+        key={uuidv1()}
+      ></Web3Balance>
     );
   } else {
     return <Fragment></Fragment>;

@@ -2,23 +2,23 @@ import React, { useState, useEffect, Fragment } from "react";
 import ReactDOM from "react-dom";
 import uuidv1 from "uuid/v1";
 import $ from "jquery";
-import Web3NetworkName from "./Web3NetworkName";
+import Web3EnableButton from "./Web3EnableButton";
 
-function Web3NetworkNameContainer(props) {
+function Web3EnableButtonContainer(props) {
   const { injected, domElement } = props;
-  const { connected, accounts, networkName } = injected;
+  const { connected, accounts, providerName } = injected;
 
   if (connected && accounts.length > 0) {
     return (
-      <Web3NetworkName
-        networkName={networkName}
+      <Web3EnableButton
+        providerName={providerName}
         domElement={domElement}
         key={uuidv1()}
-      ></Web3NetworkName>
+      ></Web3EnableButton>
     );
   } else {
     return <Fragment></Fragment>;
   }
 }
 
-export default Web3NetworkNameContainer;
+export default Web3EnableButtonContainer;
