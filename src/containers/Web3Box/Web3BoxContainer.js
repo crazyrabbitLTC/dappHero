@@ -6,8 +6,10 @@ import BoxProfileImage from './BoxProfileImage'
 import BoxWebsite from './BoxWebsite'
 
 function Web3BoxContainer(props) {
-  const { injected } = props
+  const { injected, request, index } = props
   const { accounts } = injected
+
+  const { el, requestString } = request
 
   const [state, setState] = useState({})
 
@@ -23,18 +25,51 @@ function Web3BoxContainer(props) {
     setState({ ...profile })
   }
 
-  return (
-    <Fragment>
-      <BoxName name={state.name} injected={injected}></BoxName>
-      <BoxProfileImage
-        image={state.image}
-        injected={injected}
-      ></BoxProfileImage>
-      <BoxWebsite
-        website={state.website}
-        injected={injected}
-      ></BoxWebsite>
-    </Fragment>
-  )
+  const reducer = request => {
+    switch (request.method) {
+      case 'name':
+        console.log("In the name!")
+        return (
+          <BoxName
+            domElement={request.el}
+            name={state.name}
+            injected={injected}
+            key={index}
+          ></BoxName>
+        )
+        break
+
+      case 'profileImage':
+        return (
+          <BoxProfileImage
+            domElement={request.el}
+            image={state.image}
+            injected={injected}
+            key={index}
+          ></BoxProfileImage>
+        )
+        break
+
+      case 'website':
+        return (
+          <BoxWebsite
+            domElement={request.el}
+            website={state.website}
+            injected={injected}
+            key={index}
+          ></BoxWebsite>
+        )
+        break
+
+      default:
+        return <Fragment></Fragment>
+    }
+  }
+
+  return reducer({
+    method: requestString[2],
+    el,
+    requestString,
+  })
 }
 export default Web3BoxContainer

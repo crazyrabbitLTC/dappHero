@@ -22,10 +22,21 @@ function App() {
 
   const reducer = request => {
     switch (request.arg) {
+      case 'box':
+        return (
+          <Web3BoxContainer
+            injected={injected}
+            key={request.index}
+            domElement={request.el}
+            request={request}
+            index={request.index}
+          ></Web3BoxContainer>
+        )
+
       case 'address':
         return (
           <Web3AddressContainer
-            key={uuidv1()}
+            key={request.index}
             injected={injected}
             domElement={request.el}
           ></Web3AddressContainer>
@@ -35,7 +46,7 @@ function App() {
       case 'networkId':
         return (
           <Web3NetworkIdContainer
-            key={uuidv1()}
+            key={request.index}
             injected={injected}
             domElement={request.el}
           ></Web3NetworkIdContainer>
@@ -45,7 +56,7 @@ function App() {
       case 'providerName':
         return (
           <Web3ProviderNameContainer
-            key={uuidv1()}
+            key={request.index}
             injected={injected}
             domElement={request.el}
           ></Web3ProviderNameContainer>
@@ -103,7 +114,7 @@ function App() {
       //     break;
 
       default:
-        return <div key={uuidv1()}></div>
+        return null
     }
   }
 
@@ -116,6 +127,7 @@ function App() {
           arg: requestString[1],
           el: elements[element],
           index: element,
+          requestString,
         })
       })}
     </Fragment>
