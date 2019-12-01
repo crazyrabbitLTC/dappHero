@@ -1,5 +1,5 @@
 import React, { useState, useEffect, Fragment } from "react";
-import deployContract from "./utils/deployContract";
+import deployContract from "../utils/deployContract";
 
 
 function Web3ERC20Deploy(props) {

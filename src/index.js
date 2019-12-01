@@ -10,7 +10,7 @@ import Web3ProviderNameContainer from "./containers/Web3ProviderName/Web3Provide
 import Web3NetworkNameContainer from "./containers/Web3NetworkName/Web3NetworkNameContainer";
 import Web3EnableButton from "./components/Web3EnableButton";
 import Web3BoxContainer from "./containers/Web3Box/Web3BoxContainer";
-import Web3ERC20Deploy from "./containers/Web3ERC20/Web3ERC20Deploy";
+import Web3ERC20Container from "./containers/Web3ERC20/Web3ERC20Container";
 
 function App() {
   const injected = useWeb3Injected();
@@ -32,7 +32,8 @@ function App() {
       <Web3NetworkNameContainer injected={injected}></Web3NetworkNameContainer>
       <Web3EnableButton injected={injected}></Web3EnableButton>
       <Web3BalanceContainer injected={injected}></Web3BalanceContainer>
-      <Web3ERC20Deploy injected={injected}></Web3ERC20Deploy>
+      <Web3ERC20Container injected={injected}></Web3ERC20Container>
+
     </div>
   );
 }

@@ -33,6 +33,7 @@ const deployContract = async (web3, accounts) => {
       .deploy({ arguments: tokenArguments })
       .send({ from: accounts[0], gas, gasPrice });
     console.log(instance.options.address);
+    return instance;
   } catch (error) {
     console.log(error)
   }
