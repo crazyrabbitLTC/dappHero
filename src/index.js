@@ -25,21 +25,18 @@ function App() {
 
   const elements = $('[id^="web3-"]');
 
-
   const reducer = request => {
     switch (request.arg) {
       case "address":
-        console.log("here!");
         return (
-          <div>Hello!</div>
-          // <Web3AddressContainer injected={injected} element={request.el}>
-          //   Going in!
-          // </Web3AddressContainer>
+          <Web3AddressContainer
+            injected={injected}
+            domElement={request.el}
+          ></Web3AddressContainer>
         );
         break;
 
       case "networkId":
-        console.log("also here!")
         return (
           <Web3NetworkIdContainer injected={injected}></Web3NetworkIdContainer>
         );
@@ -87,11 +84,11 @@ function App() {
   return (
     <div>
       {elements.map(element => {
-        const thing = elements[element].id;
-        const foo = thing.split("-");
+        const domElementId = elements[element].id;
+        const requestString = domElementId.split("-");
         return reducer({
-          arg: foo[1],
-          el: element
+          arg: requestString[1],
+          el: elements[element]
         });
       })}
     </div>
