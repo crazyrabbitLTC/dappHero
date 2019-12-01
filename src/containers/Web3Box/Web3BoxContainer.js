@@ -21,14 +21,13 @@ function Web3BoxContainer(props) {
 
   const getBox = async () => {
     const profile = await Box.getProfile(accounts[0])
-
     setState({ ...profile })
   }
 
   const reducer = request => {
     switch (request.method) {
       case 'name':
-        console.log('In the name!')
+        
         return (
           <BoxName
             domElement={request.el}
@@ -40,13 +39,14 @@ function Web3BoxContainer(props) {
         break
 
       case 'profileImage':
-        return (
+          const image = state.image || null;
+        return ( image ? 
           <BoxProfileImage
             domElement={request.el}
-            image={state.image}
+            image={image}
             injected={injected}
             key={index}
-          ></BoxProfileImage>
+          ></BoxProfileImage> : null
         )
         break
 
