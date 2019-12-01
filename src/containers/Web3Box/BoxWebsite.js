@@ -1,11 +1,11 @@
-import React, { useRef, useEffect, Fragment } from "react";
-import ReactDOM from "react-dom";
-import $ from "jquery";
+import React, { useRef, useEffect, Fragment } from 'react'
+import ReactDOM from 'react-dom'
+import $ from 'jquery'
 
 function BoxWebsite(props) {
-  const { injected , website} = props;
-  const { connected, accounts } = injected;
-  const boxWebsiteLocations = $("*[id*=web3-box-website]:visible");
+  const { injected, website } = props
+  const { connected, accounts } = injected
+  const boxWebsiteLocations = $('*[id*=web3-box-website]:visible')
 
   if (
     boxWebsiteLocations &&
@@ -14,16 +14,16 @@ function BoxWebsite(props) {
     accounts.length > 0
   ) {
     return boxWebsiteLocations.map(e => {
-      $(boxWebsiteLocations[e]).empty();
+      $(boxWebsiteLocations[e]).empty()
       return ReactDOM.createPortal(
         <Fragment>{website}</Fragment>,
-        boxWebsiteLocations[e]
-      );
-    });
+        boxWebsiteLocations[e],
+      )
+    })
 
-    return;
+    return
   } else {
-    return <Fragment></Fragment>;
+    return <Fragment></Fragment>
   }
 }
-export default BoxWebsite;
+export default BoxWebsite

@@ -1,16 +1,16 @@
-import React, { useRef, useEffect, Fragment } from "react";
-import ReactDOM from "react-dom";
-import $ from "jquery";
+import React, { useRef, useEffect, Fragment } from 'react'
+import ReactDOM from 'react-dom'
+import $ from 'jquery'
 
 function BoxProfileImage(props) {
-  const { injected, image } = props;
-  const { connected, accounts } = injected;
+  const { injected, image } = props
+  const { connected, accounts } = injected
   const profileImageParentLocations = $(
-    "*[id*=web3-box-profileImageParent]:visible"
-  );
+    '*[id*=web3-box-profileImageParent]:visible',
+  )
   const profileImageChildLocations = $(
-    "*[id*=web3-box-profileImageChild]:visible"
-  );
+    '*[id*=web3-box-profileImageChild]:visible',
+  )
 
   if (
     profileImageParentLocations &&
@@ -20,21 +20,21 @@ function BoxProfileImage(props) {
     connected &&
     accounts.length > 0 &&
     image &&
-    image[0].contentUrl["/"]
+    image[0].contentUrl['/']
   ) {
-    const ipfs = image[0].contentUrl["/"];
+    const ipfs = image[0].contentUrl['/']
     return profileImageParentLocations.map(e => {
-      $(profileImageChildLocations[e]).remove();
+      $(profileImageChildLocations[e]).remove()
       return ReactDOM.createPortal(
         <img
           src={`https://cloudflare-ipfs.com/ipfs/${ipfs}`}
           className={`profileimage`}
         ></img>,
-        profileImageParentLocations[e]
-      );
-    });
+        profileImageParentLocations[e],
+      )
+    })
   } else {
-    return <Fragment></Fragment>;
+    return <Fragment></Fragment>
   }
 }
-export default BoxProfileImage;
+export default BoxProfileImage
