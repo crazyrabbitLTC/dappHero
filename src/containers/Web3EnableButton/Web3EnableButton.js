@@ -2,7 +2,6 @@ import React, { useRef, useEffect, Fragment } from "react";
 import ReactDOM from "react-dom";
 import $ from "jquery";
 
-
 function Web3EnableButton(props) {
   const { injected, domElement } = props;
   const { connected, accounts } = injected;

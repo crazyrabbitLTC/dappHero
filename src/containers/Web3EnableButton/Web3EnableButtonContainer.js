@@ -5,7 +5,7 @@ import $ from "jquery";
 import Web3EnableButton from "./Web3EnableButton";
 
 function Web3EnableButtonContainer(props) {
-  const { injected, domElement } = props;
+  const { injected, domElement, key } = props;
   const { connected, accounts, providerName } = injected;
 
   if (connected && accounts.length > 0) {
@@ -13,11 +13,11 @@ function Web3EnableButtonContainer(props) {
       <Web3EnableButton
         providerName={providerName}
         domElement={domElement}
-        key={uuidv1()}
+        key={key}
       ></Web3EnableButton>
     );
   } else {
-    return <Fragment></Fragment>;
+    return <Fragment key={key}></Fragment>;
   }
 }
 

@@ -1,9 +1,11 @@
 import React, { useState, useEffect, Fragment } from "react";
 import ReactDOM from "react-dom";
-import { useWeb3Injected } from "@openzeppelin/network/react";
+
 import $ from "jquery";
 import "core-js/stable";
 import "regenerator-runtime/runtime";
+import { useWeb3Injected } from "@openzeppelin/network/react";
+import uuidv1 from "uuid/v1";
 import Web3AddressContainer from "./containers/Web3Address/Web3AddressContainer";
 import Web3BalanceContainer from "./containers/Web3Balance/Web3BalanceContainer";
 import Web3NetworkIdContainer from "./containers/Web3NetworkId/Web3NetworkIdContainer";
@@ -14,14 +16,6 @@ import Web3BoxContainer from "./containers/Web3Box/Web3BoxContainer";
 
 function App() {
   const injected = useWeb3Injected();
-  const {
-    accounts,
-    networkId,
-    networkName,
-    providerName,
-    lib, //This is your Web3
-    connected
-  } = injected;
 
   const elements = $('[id^="web3-"]');
 
@@ -30,7 +24,9 @@ function App() {
       case "address":
         return (
           <Web3AddressContainer
+          key={uuidv1()}
             injected={injected}
+            
             domElement={request.el}
           ></Web3AddressContainer>
         );
@@ -39,6 +35,7 @@ function App() {
       case "networkId":
         return (
           <Web3NetworkIdContainer
+          key={uuidv1()}
             injected={injected}
             domElement={request.el}
           ></Web3NetworkIdContainer>
@@ -48,6 +45,7 @@ function App() {
       case "providerName":
         return (
           <Web3ProviderNameContainer
+          key={uuidv1()}
             injected={injected}
             domElement={request.el}
           ></Web3ProviderNameContainer>
@@ -57,6 +55,7 @@ function App() {
       case "networkName":
         return (
           <Web3NetworkNameContainer
+          key={uuidv1()}
             injected={injected}
             domElement={request.el}
           ></Web3NetworkNameContainer>
@@ -66,6 +65,7 @@ function App() {
       case "enableButton":
         return (
           <Web3EnableButton
+          key={"enableButton"} //Needed to prevent React Key issue
             injected={injected}
             domElement={request.el}
           ></Web3EnableButton>
@@ -75,6 +75,7 @@ function App() {
       case "balance":
         return (
           <Web3BalanceContainer
+          key={uuidv1()}
             injected={injected}
             domElement={request.el}
           ></Web3BalanceContainer>
@@ -90,12 +91,12 @@ function App() {
       //     break;
 
       default:
-        return <div></div>;
+        return <div key={uuidv1()}></div>;
     }
   };
 
   return (
-    <div>
+    <Fragment>
       {elements.map(element => {
         const domElementId = elements[element].id;
         const requestString = domElementId.split("-");
@@ -104,7 +105,7 @@ function App() {
           el: elements[element]
         });
       })}
-    </div>
+    </Fragment>
   );
 }
 

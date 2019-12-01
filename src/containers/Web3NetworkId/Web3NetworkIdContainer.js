@@ -1,7 +1,7 @@
 import React, { useState, useEffect, Fragment } from "react";
-import ReactDOM from "react-dom";
+
 import uuidv1 from "uuid/v1";
-import $ from "jquery";
+
 import Web3NetworkId from "./Web3NetworkId";
 
 function Web3NetworkIdContainer(props) {
