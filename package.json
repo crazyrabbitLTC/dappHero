@@ -51,11 +51,5 @@
     "hooks": {
       "pre-commit": "npm run format"
     }
-  },
-  "lint-staged": {
-    "*.js": [
-      "prettier --write",
-      "git add"
-    ]
   }
 }
