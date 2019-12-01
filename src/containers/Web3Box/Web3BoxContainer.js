@@ -28,7 +28,7 @@ function Web3BoxContainer(props) {
   const reducer = request => {
     switch (request.method) {
       case 'name':
-        console.log("In the name!")
+        console.log('In the name!')
         return (
           <BoxName
             domElement={request.el}

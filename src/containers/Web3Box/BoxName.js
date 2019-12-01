@@ -1,27 +1,23 @@
-import React, { useRef, useEffect, Fragment } from 'react'
+import React, { Fragment } from 'react'
 import ReactDOM from 'react-dom'
-import $ from 'jquery'
 
-function BoxName(props) {
-  const { injected, name } = props
-  const { connected, accounts } = injected
-  const boxNameLocations = $('*[id*=web3-box-name]:visible')
+class BoxName extends React.Component {
+  constructor(props) {
+    super(props)
 
-  if (
-    boxNameLocations &&
-    boxNameLocations.length > 0 &&
-    connected &&
-    accounts.length > 0
-  ) {
-    return boxNameLocations.map(e => {
-      $(boxNameLocations[e]).empty()
-      return ReactDOM.createPortal(
-        <Fragment>{name}</Fragment>,
-        boxNameLocations[e],
+    while (this.props.domElement.firstChild) {
+      this.props.domElement.removeChild(
+        this.props.domElement.firstChild,
       )
-    })
-  } else {
-    return <Fragment></Fragment>
+    }
+  }
+
+  render() {
+    return ReactDOM.createPortal(
+      <Fragment>{this.props.name}</Fragment>,
+      document.getElementById(this.props.domElement.id),
+    )
   }
 }
+
 export default BoxName
