@@ -8,28 +8,30 @@ function Web3AddressContainer(props) {
   const { injected } = props;
   const { connected, accounts } = injected;
 
-  const addressLocations = $("*[id*=web3-address]:visible");
+  //const addressLocations = $("*[id*=web3-address]:visible");
 
-  if (
-    addressLocations &&
-    addressLocations.length > 0 &&
-    connected &&
-    accounts.length > 0
-  ) {
-    return (
-      <Fragment>
-        {addressLocations.map(e => (
-          <Web3Address
-            injected={injected}
-            domElement={addressLocations[e]}
-            key={uuidv1()}
-          ></Web3Address>
-        ))}
-      </Fragment>
-    );
-  } else {
-    return <Fragment></Fragment>;
-  }
+  console.log("In address container!")
+  // if (
+  //   addressLocations &&
+  //   addressLocations.length > 0 &&
+  //   connected &&
+  //   accounts.length > 0
+  // ) {
+  //   return (
+  //     <Fragment>
+  //       {addressLocations.map(e => (
+  //         <Web3Address
+  //           injected={injected}
+  //           domElement={addressLocations[e]}
+  //           key={uuidv1()}
+  //         ></Web3Address>
+  //       ))}
+  //     </Fragment>
+  //   );
+  // } else {
+  //   return <Fragment></Fragment>;
+  // }
+  return <div>IN address container</div>
 }
 
 export default Web3AddressContainer;
