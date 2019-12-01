@@ -10,16 +10,12 @@ class Web3GasPrice extends React.Component {
     }
   }
 
-
   render() {
-    console.log(this.props.domElement)
-
     return ReactDOM.createPortal(
       <Fragment>{this.props.gasPrice}</Fragment>,
       document.getElementById(this.props.domElement.id)
     );
   }
-
 }
 
 export default Web3GasPrice;

@@ -5,7 +5,7 @@ import $ from "jquery";
 import Web3Balance from "./Web3Balance";
 
 function Web3BalanceContainer(props) {
-  const { injected, domElement } = props;
+  const { injected, domElement, keyValue } = props;
   const { connected, accounts, lib } = injected;
 
   const [balance, setBalance] = useState(0);
@@ -36,11 +36,11 @@ function Web3BalanceContainer(props) {
       <Web3Balance
         balance={balance}
         domElement={domElement}
-        key={uuidv1()}
+        key={keyValue}
       ></Web3Balance>
     );
   } else {
-    return <Fragment></Fragment>;
+    return <Fragment key={keyValue}></Fragment>;
   }
 }
 

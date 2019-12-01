@@ -1,5 +1,4 @@
 import React, { useState, useEffect, Fragment } from "react";
-import uuidv1 from "uuid/v1";
 import Web3GasPrice from "./Web3GasPrice";
 
 function Web3GasPriceContainer(props) {

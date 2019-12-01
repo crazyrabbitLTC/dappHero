@@ -76,7 +76,7 @@ function App() {
       case "balance":
         return (
           <Web3BalanceContainer
-            key={uuidv1()}
+            key={request.index}
             injected={injected}
             domElement={request.el}
           ></Web3BalanceContainer>

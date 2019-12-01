@@ -1,16 +1,21 @@
 import React, { useRef, useEffect, Fragment } from "react";
 import ReactDOM from "react-dom";
-import $ from "jquery";
 
-function Web3Address(props) {
-  const { injected, domElement } = props;
-  const { accounts } = injected;
+class Web3Address extends React.Component {
+  constructor(props) {
+    super(props);
+    const myNode = props.domElement;
+    while (this.props.domElement.firstChild) {
+      this.props.domElement.removeChild(this.props.domElement.firstChild);
+    }
+  }
 
-
-  $(domElement).text((accounts[0]))
-  return null;
-  
-  // $(domElement).empty();
-  // return ReactDOM.createPortal(<Fragment>{(accounts[0])}</Fragment>, domElement);
+  render() {
+    return ReactDOM.createPortal(
+      <Fragment>{this.props.injected.accounts[0]}</Fragment>,
+      document.getElementById(this.props.domElement.id)
+    );
+  }
 }
+
 export default Web3Address;

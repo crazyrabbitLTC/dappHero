@@ -1,14 +1,21 @@
-import React, { useRef, useEffect, Fragment } from "react";
+import React, { Fragment } from "react";
 import ReactDOM from "react-dom";
-import $ from "jquery";
 
-function Web3Balance(props) {
-  const { balance, domElement } = props;
+class Web3Balance extends React.Component {
+  constructor(props) {
+    super(props);
+    while (this.props.domElement.firstChild) {
+      this.props.domElement.removeChild(this.props.domElement.firstChild);
+    }
+  }
 
-  $(domElement).text(Number(balance).toFixed(2));
-  return null;
-  //not sure why the following causes problems
-  //$(domElement).empty();
-  //return ReactDOM.createPortal(<Fragment>{Number(balance).toFixed(2)}</Fragment>, domElement);
+  render() {
+    console.log(this.props.balance);
+    return ReactDOM.createPortal(
+      <Fragment>{this.props.balance}</Fragment>,
+      document.getElementById(this.props.domElement.id)
+    );
+  }
 }
+
 export default Web3Balance;
