@@ -65,7 +65,7 @@ function App() {
       case "enableButton":
         return (
           <Web3EnableButton
-          key={"enableButton"} //Needed to prevent React Key issue
+          key={request.index} //Needed to prevent React Key issue
             injected={injected}
             domElement={request.el}
           ></Web3EnableButton>
@@ -102,7 +102,8 @@ function App() {
         const requestString = domElementId.split("-");
         return reducer({
           arg: requestString[1],
-          el: elements[element]
+          el: elements[element],
+          index: element
         });
       })}
     </Fragment>

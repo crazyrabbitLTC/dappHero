@@ -14,15 +14,19 @@ function Web3BalanceContainer(props) {
     const getBalance = async () => {
       let balance;
       try {
+        if(accounts[0]){
         balance = await lib.eth.getBalance(accounts[0]);
         balance = lib.utils.fromWei(balance, "ether");
+        } else {
+          balance = "0"
+        }
       } catch (error) {
         console.log(error);
       }
       setBalance(balance);
     };
 
-    if (connected && lib) {
+    if (connected) {
       getBalance();
     }
   }, [connected]);

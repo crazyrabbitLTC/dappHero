@@ -6,7 +6,8 @@ function Web3EnableButton(props) {
   const { injected, domElement } = props;
   const { connected, accounts } = injected;
 
-  $(domElement).empty();
+  //$(domElement).empty();
+  //Need to better understand how to target inside of the button
 
   const web3Enable = async () => {
     await injected.requestAuth();
@@ -21,7 +22,7 @@ function Web3EnableButton(props) {
           web3Enable();
         }}
       >
-        enable MetaMask
+        Enable Metamask
       </a>,
       domElement
     );
