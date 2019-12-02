@@ -8,7 +8,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "webpack-dev-server --config ./webpack.config.js --mode development --progress --colors --port 3000",
     "build": "webpack",
-    "deploy": "aws s3 cp ./dist/bundle.js s3://webflow-react-test/ --acl public-read",
+    "deploy": "aws s3 cp ./dist/bundle.js s3://webflow-react-test/v2/ --acl public-read",
     "bd": "npm run build && npm run deploy",
     "format": "prettier --write \"./src/**/*.{js,jsx,json}\""
   },

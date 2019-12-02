@@ -51,7 +51,7 @@ function Web3BoxContainer(props) {
 
       case 'website':
         return (
-          <BoxWebsite
+          <BoxWebsite   
             domElement={request.el}
             website={state.website}
             injected={injected}

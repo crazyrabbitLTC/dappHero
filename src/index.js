@@ -19,7 +19,7 @@ function App() {
   const injected = useWeb3Injected()
 
   const elements = $('[id^="web3-"]')
-
+console.log("The found elements: ", elements)
   const reducer = request => {
     switch (request.arg) {
       case 'box':

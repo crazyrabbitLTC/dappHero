@@ -1,5 +1,3 @@
-
-
 import React, { Fragment } from 'react'
 import ReactDOM from 'react-dom'
 
@@ -22,16 +20,17 @@ class BoxProfileImage extends React.Component {
       this.props.domElement.id,
     )
 
+    //There are a number of src attributes availible8 on a webflow image.
     this.imageElement.setAttribute(
       'src',
       `https://cloudflare-ipfs.com/ipfs/${ipfsHash}`,
     )
 
+    this.imageElement.removeAttribute('srcset')
   }
 
   render() {
     console.log('The props: ', this.props)
-
 
     return null
   }

@@ -14,7 +14,7 @@ class Web3Balance extends React.Component {
   render() {
     console.log(this.props.balance)
     return ReactDOM.createPortal(
-      <Fragment>{this.props.balance}</Fragment>,
+      <Fragment>{Number(this.props.balance).toFixed(3)}</Fragment>,
       document.getElementById(this.props.domElement.id),
     )
   }
