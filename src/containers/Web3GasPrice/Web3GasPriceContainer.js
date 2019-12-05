@@ -14,7 +14,6 @@ function Web3GasPriceContainer(props) {
         if (accounts[0]) {
           gasPrice = await lib.eth.getGasPrice()
           gasPrice = lib.utils.fromWei(gasPrice, 'ether')
-          console.log('Gas price', gasPrice)
         } else {
           gasPrice = '0'
         }

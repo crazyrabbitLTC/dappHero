@@ -19,6 +19,8 @@
     "@babel/core": "^7.7.4",
     "@babel/preset-env": "^7.7.4",
     "@babel/preset-react": "^7.7.4",
+    "@openzeppelin/contracts-ethereum-package": "^2.4.0",
+    "@openzeppelin/upgrades": "^2.6.0",
     "babel-loader": "^8.0.6",
     "eslint": "^6.1.0",
     "eslint-config-airbnb": "^18.0.1",
@@ -37,6 +39,7 @@
   },
   "dependencies": {
     "3box": "^1.13.2",
+    "@openzeppelin/contracts": "^2.4.0",
     "@openzeppelin/network": "^0.2.10",
     "core-js": "^3.4.4",
     "jquery": "^3.4.1",

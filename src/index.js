@@ -14,14 +14,27 @@ import Web3NetworkNameContainer from './containers/Web3NetworkName/Web3NetworkNa
 import Web3EnableButton from './containers/Web3EnableButton/Web3EnableButton'
 import Web3BoxContainer from './containers/Web3Box/Web3BoxContainer'
 import Web3GasPriceContainer from './containers/Web3GasPrice/Web3GasPriceContainer'
-
+import Web3ERC20Container from './containers/Web3ERC20/Web3ERC20Container'
 function App() {
   const injected = useWeb3Injected()
 
   const elements = $('[id^="web3-"]')
-  console.log('The found elements: ', elements)
+
   const reducer = request => {
     switch (request.arg) {
+
+      case 'erc20':
+        return (
+          <Web3ERC20Container
+            injected={injected}
+            key={request.index}
+            domElement={request.el}
+            request={request}
+            index={request.index}
+          ></Web3ERC20Container>
+        )
+
+        break
       case 'box':
         return (
           <Web3BoxContainer
@@ -32,6 +45,7 @@ function App() {
             index={request.index}
           ></Web3BoxContainer>
         )
+        break
 
       case 'address':
         return (
