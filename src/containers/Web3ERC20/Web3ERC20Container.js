@@ -354,11 +354,12 @@ function Web3ERC20(props) {
     userBalance: 0,
   }
   const [token, setToken] = useState(defaultToken)
+  const [formValue, setFormValue] = useState(null)
 
   useEffect(() => {
     const loadToken = async () => {
       const instance = new lib.eth.Contract(abi.abi, contractAddress)
-      console.log('Instance!', instance)
+
       const name = await getTokenName(instance)
       const symbol = await getTokenSymbol(instance)
       const totalSupply = await getTotalSupply(instance)
@@ -379,6 +380,10 @@ function Web3ERC20(props) {
       loadToken()
     }
   }, [connected])
+
+  const handleFormEntry = (el) => {
+
+  }
 
   const transfer = async (destination, amount) => {
     let tx
@@ -409,7 +414,7 @@ function Web3ERC20(props) {
   const getBalance = async (instance, address) => {
     try {
       let balance = await instance.methods.balanceOf(address).call()
-      console.log("the balance", balance);
+
       return balance
     } catch (error) {
       console.log('Error in Get Balance', error)
@@ -419,7 +424,6 @@ function Web3ERC20(props) {
   const getTokenName = async instance => {
     try {
       let name = await instance.methods.name().call()
-      console.log('The name right from the fucntions: ', name)
       return name
     } catch (error) {
       console.log('Error in getTokenName', error)

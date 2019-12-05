@@ -336,21 +336,14 @@
   "ast": {
     "absolutePath": "contracts/MyToken.sol",
     "exportedSymbols": {
-      "MyToken": [
-        859
-      ]
+      "MyToken": [859]
     },
     "id": 860,
     "nodeType": "SourceUnit",
     "nodes": [
       {
         "id": 829,
-        "literals": [
-          "solidity",
-          "^",
-          "0.5",
-          ".0"
-        ],
+        "literals": ["solidity", "^", "0.5", ".0"],
         "nodeType": "PragmaDirective",
         "src": "0:23:6"
       },
@@ -444,25 +437,12 @@
             "src": "303:13:6"
           }
         ],
-        "contractDependencies": [
-          29,
-          628,
-          695,
-          764,
-          827
-        ],
+        "contractDependencies": [29, 628, 695, 764, 827],
         "contractKind": "contract",
         "documentation": null,
         "fullyImplemented": true,
         "id": 859,
-        "linearizedBaseContracts": [
-          859,
-          695,
-          628,
-          764,
-          29,
-          827
-        ],
+        "linearizedBaseContracts": [859, 695, 628, 764, 29, 827],
         "name": "MyToken",
         "nodeType": "ContractDefinition",
         "nodes": [

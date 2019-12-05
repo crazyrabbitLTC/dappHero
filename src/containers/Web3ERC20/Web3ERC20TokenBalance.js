@@ -11,7 +11,6 @@ class Web3ERC20TokenBalance extends React.Component {
       )
     }
   }
-      
 
   render() {
     return ReactDOM.createPortal(

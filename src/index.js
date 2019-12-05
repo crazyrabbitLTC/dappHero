@@ -22,7 +22,6 @@ function App() {
 
   const reducer = request => {
     switch (request.arg) {
-
       case 'erc20':
         return (
           <Web3ERC20Container
