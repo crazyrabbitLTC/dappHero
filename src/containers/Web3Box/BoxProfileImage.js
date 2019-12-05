@@ -30,8 +30,6 @@ class BoxProfileImage extends React.Component {
   }
 
   render() {
-
-
     return null
   }
 }

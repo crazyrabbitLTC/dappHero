@@ -4,6 +4,8 @@ import Web3ERC20TokenName from './Web3ERC20TokenName'
 import Web3ERC20TokenSymbol from './Web3ERC20Symbol'
 import Web3ERC20TokenDecimals from './Web3ERC20TokenDecimals'
 import Web3ERC20TokenBalance from './Web3ERC20TokenBalance'
+import Web3ERC20InputValue from './Web3ERC20InputValue'
+
 let abi = {
   abi: [
     {
@@ -354,7 +356,10 @@ function Web3ERC20(props) {
     userBalance: 0,
   }
   const [token, setToken] = useState(defaultToken)
-  const [formValue, setFormValue] = useState(null)
+  const [formValue, setFormValue] = useState({
+    recipient: '',
+    amount: 0,
+  })
 
   useEffect(() => {
     const loadToken = async () => {
@@ -381,8 +386,11 @@ function Web3ERC20(props) {
     }
   }, [connected])
 
-  const handleFormEntry = (el) => {
-
+  const handleFormEntry = data => {
+    setFormValue({...formValue, recipient: data})
+  }
+  const handleTransfer = () => {
+    transfer(formValue.recipient, formValue.amount)
   }
 
   const transfer = async (destination, amount) => {
@@ -463,6 +471,18 @@ function Web3ERC20(props) {
 
   const reducer = request => {
     switch (request.method) {
+      case 'inputValue':
+        return (
+          <Web3ERC20InputValue
+          handleFormEntry={handleFormEntry}
+            domElement={request.el}
+            name={token.name}
+            injected={injected}
+            key={index}
+          ></Web3ERC20InputValue>
+        )
+        break
+
       case 'name':
         return (
           <Web3ERC20TokenName
