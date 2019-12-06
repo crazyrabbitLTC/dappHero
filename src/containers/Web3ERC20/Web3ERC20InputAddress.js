@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react'
 import ReactDOM from 'react-dom'
 
-class Web3ERC20InputValue extends React.Component {
+class Web3ERC20InputAddress extends React.Component {
   constructor(props) {
     super(props)
     this.bubbleInput = this.props.handleFormEntry.bind(this)
@@ -12,7 +12,7 @@ class Web3ERC20InputValue extends React.Component {
     this.inputElement = document.getElementById(
       this.props.domElement.id,
     )
-    this.data = document.querySelector('input.web3-erc20-inputValue')
+    this.data = document.querySelector('input.web3-erc20-inputAddress')
     this.inputElement.addEventListener('input', this.handleInput)
   }
 
@@ -26,4 +26,4 @@ class Web3ERC20InputValue extends React.Component {
   }
 }
 
-export default Web3ERC20InputValue
+export default Web3ERC20InputAddress

@@ -1,10 +1,17 @@
-import React, { useState, useEffect, Fragment } from 'react'
+import React, {
+  useState,
+  useEffect,
+  useCallback,
+  Fragment,
+} from 'react'
 import Web3ERC20TotalSupply from './Web3ERC20TotalSupply'
 import Web3ERC20TokenName from './Web3ERC20TokenName'
 import Web3ERC20TokenSymbol from './Web3ERC20Symbol'
 import Web3ERC20TokenDecimals from './Web3ERC20TokenDecimals'
 import Web3ERC20TokenBalance from './Web3ERC20TokenBalance'
 import Web3ERC20InputValue from './Web3ERC20InputValue'
+import Web3ERC20InputAddress from './Web3ERC20InputAddress'
+import SendButton from './SendButton/SendButton'
 
 let abi = {
   abi: [
@@ -337,7 +344,7 @@ let abi = {
   ],
 }
 
-let contractAddress = '0x395A29cce13a8768326B4901dcac730b0210b3eF'
+let contractAddress = '0xDFED82aFC793A872460313941aB8983E681fD94c'
 
 function Web3ERC20(props) {
   const { injected, request, index } = props
@@ -356,10 +363,9 @@ function Web3ERC20(props) {
     userBalance: 0,
   }
   const [token, setToken] = useState(defaultToken)
-  const [formValue, setFormValue] = useState({
-    recipient: '',
-    amount: 0,
-  })
+
+  const [value, setValue] = useState(0)
+  const [recipient, setRecipient] = useState(null)
 
   useEffect(() => {
     const loadToken = async () => {
@@ -386,24 +392,47 @@ function Web3ERC20(props) {
     }
   }, [connected])
 
-  const handleFormEntry = data => {
-    setFormValue({...formValue, recipient: data})
-  }
-  const handleTransfer = () => {
-    transfer(formValue.recipient, formValue.amount)
+  const handleFormEntryValue = useCallback(data => {
+    console.log('The Bubbled Data: ', data)
+    setValue(data)
+  })
+
+  const handleFormEntryAddress = useCallback(data => {
+    console.log('The bubbled data: ', data)
+    setRecipient(data)
+  })
+
+  //need to figure out what is going on here.
+  const handleSubmit = () => {
+    //validation of data needed
+    
+    const recipient = document.querySelector(
+      'input.web3-erc20-inputaddress',
+    )
+    const amount = document.querySelector(
+      'input.web3-erc20-inputvalue',
+    )
+    console.log('In handle submit!', recipient, "    ", amount)
+    //transfer(token.instance, formValue.recipient, formValue.amount)
+    transfer(recipient.value, Number(amount.value))
   }
 
   const transfer = async (destination, amount) => {
     let tx
     let gasPrice
     let gas
-
+    const instance = new props.injected.lib.eth.Contract(
+      abi.abi,
+      contractAddress,
+    )
+    const accounts = props.injected.accounts
     try {
+      console.log('in transfer, the accounst are: ', accounts, "  ", destination, "  ", amount)
       gas = await instance.methods
         .transfer(destination, amount)
         .estimateGas({ from: accounts[0] })
 
-      let lastBlock = await web3.eth.getBlock('latest')
+      let lastBlock = await lib.eth.getBlock('latest')
       let limit = lastBlock.gasLimit
       gas = Math.min(limit - 1, Math.ceil(gas * 1.2))
 
@@ -471,10 +500,32 @@ function Web3ERC20(props) {
 
   const reducer = request => {
     switch (request.method) {
+      case 'sendButton':
+        return (
+          <SendButton
+            handleSubmit={handleSubmit}
+            domElement={request.el}
+            name={token.name}
+            injected={injected}
+            key={index}
+          ></SendButton>
+        )
+        break
+      case 'inputAddress':
+        return (
+          <Web3ERC20InputAddress
+            handleFormEntry={handleFormEntryAddress}
+            domElement={request.el}
+            name={token.name}
+            injected={injected}
+            key={index}
+          ></Web3ERC20InputAddress>
+        )
+        break
       case 'inputValue':
         return (
           <Web3ERC20InputValue
-          handleFormEntry={handleFormEntry}
+            handleFormEntry={handleFormEntryValue}
             domElement={request.el}
             name={token.name}
             injected={injected}
