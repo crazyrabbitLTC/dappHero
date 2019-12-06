@@ -344,7 +344,7 @@ let abi = {
   ],
 }
 
-let contractAddress = '0xDFED82aFC793A872460313941aB8983E681fD94c'
+let contractAddress = '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2'
 
 function Web3ERC20(props) {
   const { injected, request, index } = props
@@ -368,6 +368,7 @@ function Web3ERC20(props) {
   const [recipient, setRecipient] = useState(null)
 
   useEffect(() => {
+    // flashTxBar(false)
     const loadToken = async () => {
       const instance = new lib.eth.Contract(abi.abi, contractAddress)
 
@@ -405,14 +406,14 @@ function Web3ERC20(props) {
   //need to figure out what is going on here.
   const handleSubmit = () => {
     //validation of data needed
-    
+
     const recipient = document.querySelector(
       'input.web3-erc20-inputaddress',
     )
     const amount = document.querySelector(
       'input.web3-erc20-inputvalue',
     )
-    console.log('In handle submit!', recipient, "    ", amount)
+    console.log('In handle submit!', recipient, '    ', amount)
     //transfer(token.instance, formValue.recipient, formValue.amount)
     transfer(recipient.value, Number(amount.value))
   }
@@ -427,7 +428,14 @@ function Web3ERC20(props) {
     )
     const accounts = props.injected.accounts
     try {
-      console.log('in transfer, the accounst are: ', accounts, "  ", destination, "  ", amount)
+      console.log(
+        'in transfer, the accounst are: ',
+        accounts,
+        '  ',
+        destination,
+        '  ',
+        amount,
+      )
       gas = await instance.methods
         .transfer(destination, amount)
         .estimateGas({ from: accounts[0] })
@@ -441,11 +449,17 @@ function Web3ERC20(props) {
         .transfer(destination, amount)
         .send({ from: accounts[0], gas, gasPrice })
 
+      flashTxBar(true)
       setTxReceipt(txReceipt)
       console.log('Transfer completed')
     } catch (error) {
       console.error('Error in making the ERC20 Transfer: ', error)
     }
+  }
+
+  const flashTxBar = toggle => {
+    const bar = document.querySelector('div.web3-erc20-txbar')
+    bar.style.visibility = toggle ? 'visible' : 'hidden'
   }
 
   const getBalance = async (instance, address) => {
@@ -594,11 +608,15 @@ function Web3ERC20(props) {
         return <Fragment></Fragment>
     }
   }
+  if (accounts.length > 0 && token.instance && connected) {
+    return reducer({
+      method: requestString[2],
+      el,
+      requestString,
+    })
+  } else {
+    return null
+  }
 
-  return reducer({
-    method: requestString[2],
-    el,
-    requestString,
-  })
 }
 export default Web3ERC20

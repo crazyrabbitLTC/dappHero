@@ -13,8 +13,9 @@ class Web3ERC20TokenBalance extends React.Component {
   }
 
   render() {
+    console.log("props", this.props)
     return ReactDOM.createPortal(
-      <Fragment>{this.props.balance}</Fragment>,
+      <Fragment>{this.props.injected.lib.utils.fromWei((this.props.balance).toString(), 'ether')}</Fragment>,
       document.getElementById(this.props.domElement.id),
     )
   }

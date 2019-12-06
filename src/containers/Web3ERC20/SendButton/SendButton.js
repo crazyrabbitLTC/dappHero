@@ -12,8 +12,8 @@ class SendButton extends React.Component {
     this.inputElement = document.getElementById(
       this.props.domElement.id,
     )
-      this.inputElement.addEventListener('click', this.handleSubmit)
-       console.log(this.inputElement)
+    this.inputElement.addEventListener('click', this.handleSubmit)
+    console.log(this.inputElement)
   }
 
   render() {
@@ -22,4 +22,3 @@ class SendButton extends React.Component {
 }
 
 export default SendButton
-

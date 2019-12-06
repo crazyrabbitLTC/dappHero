@@ -12,7 +12,9 @@ class Web3ERC20InputAddress extends React.Component {
     this.inputElement = document.getElementById(
       this.props.domElement.id,
     )
-    this.data = document.querySelector('input.web3-erc20-inputAddress')
+    this.data = document.querySelector(
+      'input.web3-erc20-inputAddress',
+    )
     this.inputElement.addEventListener('input', this.handleInput)
   }
 

@@ -15,35 +15,39 @@ import Web3EnableButton from './containers/Web3EnableButton/Web3EnableButton'
 import Web3BoxContainer from './containers/Web3Box/Web3BoxContainer'
 import Web3GasPriceContainer from './containers/Web3GasPrice/Web3GasPriceContainer'
 import Web3ERC20Container from './containers/Web3ERC20/Web3ERC20Container'
+import { Accounts } from 'web3-eth-accounts'
 function App() {
   const injected = useWeb3Injected()
-
+  const { connected, accounts } = injected
   const elements = $('[id^="web3-"]')
 
   const reducer = request => {
     switch (request.arg) {
       case 'erc20':
-        return (
-          <Web3ERC20Container
-            injected={injected}
-            key={request.index}
-            domElement={request.el}
-            request={request}
-            index={request.index}
-          ></Web3ERC20Container>
-        )
-
+        if (connected && accounts.length > 0) {
+          return (
+            <Web3ERC20Container
+              injected={injected}
+              key={request.index}
+              domElement={request.el}
+              request={request}
+              index={request.index}
+            ></Web3ERC20Container>
+          )
+        }
         break
       case 'box':
-        return (
-          <Web3BoxContainer
-            injected={injected}
-            key={request.index}
-            domElement={request.el}
-            request={request}
-            index={request.index}
-          ></Web3BoxContainer>
-        )
+        if (connected && accounts.length > 0) {
+          return (
+            <Web3BoxContainer
+              injected={injected}
+              key={request.index}
+              domElement={request.el}
+              request={request}
+              index={request.index}
+            ></Web3BoxContainer>
+          )
+        }
         break
 
       case 'address':
