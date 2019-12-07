@@ -1,4 +1,4 @@
-import React, {Fragment } from 'react'
+import React, { Fragment } from 'react'
 import ReactDOM from 'react-dom'
 import $ from 'jquery'
 import 'core-js/stable'
@@ -14,7 +14,6 @@ import Web3EnableButton from './containers/Web3/Web3EnableButton/Web3EnableButto
 import Web3BoxContainer from './containers/3Box/Web3Box/Web3BoxContainer'
 import Web3GasPriceContainer from './containers/Web3/Web3GasPrice/Web3GasPriceContainer'
 import Web3ERC20Container from './containers/ERC20/ERC20Container'
-
 
 function App() {
   const injected = useWeb3Injected()

@@ -12,7 +12,6 @@ const transfer = async (
 
   const instance = new lib.eth.Contract(abi, contractAddress)
 
-
   try {
     console.log(
       'in transfer, the accounst are: ',
@@ -36,8 +35,7 @@ const transfer = async (
       .transfer(destination, amount)
       .send({ from: accounts[0], gas, gasPrice })
 
-    return tx;
-
+    return tx
   } catch (error) {
     console.error('Error in making the ERC20 Transfer: ', error)
   }

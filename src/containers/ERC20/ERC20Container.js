@@ -95,7 +95,7 @@ function ERC20Container(props) {
       erc20.abi,
       contractAddress,
     )
-    
+
     console.log('The TX: ', tx)
   }
 
