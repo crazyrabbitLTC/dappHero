@@ -1,21 +1,21 @@
-import React, { useState, useEffect, Fragment } from 'react'
+import React, {Fragment } from 'react'
 import ReactDOM from 'react-dom'
-
 import $ from 'jquery'
 import 'core-js/stable'
 import 'regenerator-runtime/runtime'
+
 import { useWeb3Injected } from '@openzeppelin/network/react'
-import uuidv1 from 'uuid/v1'
-import Web3AddressContainer from './containers/Web3Address/Web3AddressContainer'
-import Web3BalanceContainer from './containers/Web3Balance/Web3BalanceContainer'
-import Web3NetworkIdContainer from './containers/Web3NetworkId/Web3NetworkIdContainer'
-import Web3ProviderNameContainer from './containers/Web3ProviderName/Web3ProviderNameContainer'
-import Web3NetworkNameContainer from './containers/Web3NetworkName/Web3NetworkNameContainer'
-import Web3EnableButton from './containers/Web3EnableButton/Web3EnableButton'
-import Web3BoxContainer from './containers/Web3Box/Web3BoxContainer'
-import Web3GasPriceContainer from './containers/Web3GasPrice/Web3GasPriceContainer'
-import Web3ERC20Container from './containers/Web3ERC20/Web3ERC20Container'
-import { Accounts } from 'web3-eth-accounts'
+import Web3AddressContainer from './containers/Web3/Web3Address/Web3AddressContainer'
+import Web3BalanceContainer from './containers/Web3/Web3Balance/Web3BalanceContainer'
+import Web3NetworkIdContainer from './containers/Web3/Web3NetworkId/Web3NetworkIdContainer'
+import Web3ProviderNameContainer from './containers/Web3/Web3ProviderName/Web3ProviderNameContainer'
+import Web3NetworkNameContainer from './containers/Web3/Web3NetworkName/Web3NetworkNameContainer'
+import Web3EnableButton from './containers/Web3/Web3EnableButton/Web3EnableButton'
+import Web3BoxContainer from './containers/3Box/Web3Box/Web3BoxContainer'
+import Web3GasPriceContainer from './containers/Web3/Web3GasPrice/Web3GasPriceContainer'
+import Web3ERC20Container from './containers/ERC20/ERC20Container'
+
+
 function App() {
   const injected = useWeb3Injected()
   const { connected, accounts } = injected
@@ -121,14 +121,6 @@ function App() {
           ></Web3GasPriceContainer>
         )
         break
-
-      // case "box":
-      //   return <Web3BoxContainer injected={injected}></Web3BoxContainer>;
-      //   break;
-
-      // case a:
-      //     return
-      //     break;
 
       default:
         return null

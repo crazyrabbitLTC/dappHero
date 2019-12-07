@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react'
 import ReactDOM from 'react-dom'
 
-class Web3ERC20TokenBalance extends React.Component {
+class Symbol extends React.Component {
   constructor(props) {
     super(props)
 
@@ -13,12 +13,11 @@ class Web3ERC20TokenBalance extends React.Component {
   }
 
   render() {
-    console.log("props", this.props)
     return ReactDOM.createPortal(
-      <Fragment>{this.props.injected.lib.utils.fromWei((this.props.balance).toString(), 'ether')}</Fragment>,
+      <Fragment>{this.props.symbol}</Fragment>,
       document.getElementById(this.props.domElement.id),
     )
   }
 }
 
-export default Web3ERC20TokenBalance
+export default Symbol

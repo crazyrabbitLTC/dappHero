@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react'
 import ReactDOM from 'react-dom'
 
-class Web3ERC20TotalSupply extends React.Component {
+class TokenDecimals extends React.Component {
   constructor(props) {
     super(props)
 
@@ -14,10 +14,10 @@ class Web3ERC20TotalSupply extends React.Component {
 
   render() {
     return ReactDOM.createPortal(
-      <Fragment>{this.props.totalSupply}</Fragment>,
+      <Fragment>{this.props.decimals}</Fragment>,
       document.getElementById(this.props.domElement.id),
     )
   }
 }
 
-export default Web3ERC20TotalSupply
+export default TokenDecimals

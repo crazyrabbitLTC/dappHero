@@ -1,7 +1,7 @@
-import React, { Fragment } from 'react'
-import ReactDOM from 'react-dom'
+import React from 'react'
 
-class Web3ERC20InputValue extends React.Component {
+
+class InputValue extends React.Component {
   constructor(props) {
     super(props)
     this.bubbleInput = this.props.handleFormEntry.bind(this)
@@ -26,4 +26,4 @@ class Web3ERC20InputValue extends React.Component {
   }
 }
 
-export default Web3ERC20InputValue
+export default InputValue

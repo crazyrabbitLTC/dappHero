@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react'
 import ReactDOM from 'react-dom'
 
-class Web3ERC20Symbol extends React.Component {
+class TotalSupply extends React.Component {
   constructor(props) {
     super(props)
 
@@ -14,10 +14,10 @@ class Web3ERC20Symbol extends React.Component {
 
   render() {
     return ReactDOM.createPortal(
-      <Fragment>{this.props.symbol}</Fragment>,
+      <Fragment>{this.props.totalSupply}</Fragment>,
       document.getElementById(this.props.domElement.id),
     )
   }
 }
 
-export default Web3ERC20Symbol
+export default TotalSupply
