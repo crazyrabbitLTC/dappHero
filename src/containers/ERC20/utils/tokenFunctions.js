@@ -41,10 +41,6 @@ const transfer = async (
   }
 }
 
-const flashTxBar = toggle => {
-  const bar = document.querySelector('div.web3-erc20-txbar')
-  bar.style.visibility = toggle ? 'visible' : 'hidden'
-}
 
 const getBalance = async (instance, address) => {
   try {
@@ -92,6 +88,25 @@ const getTotalSupply = async instance => {
   }
 }
 
+const isValidAddress = async (lib, address) => {
+  if(!lib.utils.isAddress(address)){
+    console.error("Address is not a valid Ethereum Address in Web3 Compoment")
+    return false;
+  }
+
+  let code;
+  try {
+    code = await lib.eth.getCode(address);
+  } catch (error) {
+    console.error(error)
+  }
+  
+  if(!code){
+    return false;
+  }
+  return true;
+}
+
 export {
   transfer,
   getBalance,
@@ -99,4 +114,5 @@ export {
   getTokenSymbol,
   getTokenDecimals,
   getTotalSupply,
+  isValidAddress,
 }

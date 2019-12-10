@@ -14,6 +14,7 @@ import {
   getTokenSymbol,
   getTokenDecimals,
   getTotalSupply,
+  isValidAddress
 } from './utils/tokenFunctions'
 import erc20 from './utils/tokenABI'
 
@@ -25,6 +26,17 @@ function ERC20Container(props) {
   const { el, requestString } = request
   const [txReceipt, setTxReceipt] = useState({})
 
+  //let contractAddress = document.getElementById('web3-contractAddress').textContent || '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2'
+  
+  let foundContainer = document.getElementById('web3-configBox')
+  foundContainer.style.display = "none";
+  foundContainer = foundContainer.textContent;
+  foundContainer = JSON.parse(foundContainer);
+  console.log("Found: ", foundContainer["contractAddress"])
+
+  contractAddress = foundContainer["contractAddress"];
+  //contractAddress = foundContainer["contractAddress"];
+  
   const tokenStateDefault = {
     instance: {},
     name: 'default',
@@ -40,7 +52,13 @@ function ERC20Container(props) {
 
   useEffect(() => {
     // flashTxBar(false)
-    const loadToken = async () => {
+    const loadToken = async (contractAddress) => {
+
+      let isValid = await isValidAddress(lib, contractAddress);
+      if(!isValid){
+        return null
+      }
+
       const instance = new lib.eth.Contract(
         erc20.abi,
         contractAddress,
@@ -62,8 +80,9 @@ function ERC20Container(props) {
       })
     }
 
+
     if (connected) {
-      loadToken()
+      loadToken(contractAddress)
     }
   }, [connected])
 
