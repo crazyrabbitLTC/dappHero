@@ -41,7 +41,6 @@ const transfer = async (
   }
 }
 
-
 const getBalance = async (instance, address) => {
   try {
     let balance = await instance.methods.balanceOf(address).call()
@@ -89,22 +88,24 @@ const getTotalSupply = async instance => {
 }
 
 const isValidAddress = async (lib, address) => {
-  if(!lib.utils.isAddress(address)){
-    console.error("Address is not a valid Ethereum Address in Web3 Compoment")
-    return false;
+  if (!lib.utils.isAddress(address)) {
+    console.error(
+      'Address is not a valid Ethereum Address in Web3 Compoment',
+    )
+    return false
   }
 
-  let code;
+  let code
   try {
-    code = await lib.eth.getCode(address);
+    code = await lib.eth.getCode(address)
   } catch (error) {
     console.error(error)
   }
-  
-  if(!code){
-    return false;
+
+  if (!code) {
+    return false
   }
-  return true;
+  return true
 }
 
 export {
