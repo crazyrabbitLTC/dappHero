@@ -13,7 +13,7 @@ import Web3NetworkNameContainer from './containers/Web3/Web3NetworkName/Web3Netw
 import Web3EnableButton from './containers/Web3/Web3EnableButton/Web3EnableButton'
 import Web3BoxContainer from './containers/3Box/Web3Box/Web3BoxContainer'
 import Web3GasPriceContainer from './containers/Web3/Web3GasPrice/Web3GasPriceContainer'
-import Web3ERC20Container from './containers/ERC20/ERC20Container'
+import Web3ERC20Container from './containers/ERC20/Web3ERC20Container'
 import { request } from 'http'
 
 function App() {
@@ -61,13 +61,11 @@ function App() {
 
   //Reducer that will return each container module that was found
   const reducer = request => {
+    console.log("the request", request)
     switch (request.key) {
       case 'erc20':
         return (
-          <Web3ERC20Container
-            request={request}
-            injected={injected}
-          ></Web3ERC20Container>
+          <div>HELLO!</div>
         )
         break
       default:
@@ -77,10 +75,9 @@ function App() {
 
   //For all the valid terms found, send them to the reducer to render.
   listOfTerms.forEach((value, key, map) => {
-    reducer({ value, key, map })
+    return reducer({ value, key, map })
   })
 
-  return null
 }
 
 ReactDOM.render(

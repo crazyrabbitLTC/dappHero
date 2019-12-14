@@ -27,7 +27,7 @@ import _ from 'lodash'
 
 let contractAddress = '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2'
 
-function ERC20Container(props) {
+function Web3ERC20Container(props) {
   const { injected, request, index } = props
   const { connected, accounts, lib } = injected
   const { el, requestString } = request
@@ -36,6 +36,7 @@ function ERC20Container(props) {
   const [viewFunctions, setViewFunctions] = useState([])
   const [functions, setFunctions] = useState([])
 
+  console.log("in the erc20 container")
   //let contractAddress = document.getElementById('web3-contractAddress').textContent || '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2'
 
   //   document.addEventListener('click', function(e) {
@@ -183,4 +184,4 @@ function ERC20Container(props) {
   // }
 }
 
-export default ERC20Container
+export default Web3ERC20Container
