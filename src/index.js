@@ -61,10 +61,9 @@ function App() {
 
   //Reducer that will return each container module that was found
   const reducer = request => {
-    console.log('the request', request)
     switch (request.key) {
       case 'erc20':
-        return <div>HELLO!</div>
+        return <Web3ERC20Container injected={injected} request={request}></Web3ERC20Container>
         break
       default:
         return null
@@ -72,9 +71,14 @@ function App() {
   }
 
   //For all the valid terms found, send them to the reducer to render.
-  listOfTerms.forEach((value, key, map) => {
-    return reducer({ value, key, map })
-  })
+  return (
+    <div>
+      {listOfTerms.forEach((value, key, map) => {
+        console.log(key, value)
+        return <div>Hello</div>
+      })}
+    </div>
+  )
 }
 
 ReactDOM.render(
@@ -82,119 +86,3 @@ ReactDOM.render(
   document.getElementById('react-target'),
 )
 
-// {elements.map(element => {
-//   const domElementId = elements[element].id
-//   const requestString = domElementId.split('-')
-//   return reducer({
-//     arg: requestString[1],
-//     el: elements[element],
-//     index: element,
-//     requestString,
-//   })
-// })}
-
-// const reducer = request => {
-//   switch (request.arg) {
-//     case 'erc20':
-//       if (connected && accounts.length > 0) {
-//         return (
-//           <Web3ERC20Container
-//             injected={injected}
-//             key={request.index}
-//             domElement={request.el}
-//             request={request}
-//             index={request.index}
-//           ></Web3ERC20Container>
-//         )
-//       }
-//       break
-//     case 'box':
-//       if (connected && accounts.length > 0) {
-//         return (
-//           <Web3BoxContainer
-//             injected={injected}
-//             key={request.index}
-//             domElement={request.el}
-//             request={request}
-//             index={request.index}
-//           ></Web3BoxContainer>
-//         )
-//       }
-//       break
-
-//     case 'address':
-//       return (
-//         <Web3AddressContainer
-//           key={request.index}
-//           injected={injected}
-//           domElement={request.el}
-//         ></Web3AddressContainer>
-//       )
-//       break
-
-//     case 'networkId':
-//       return (
-//         <Web3NetworkIdContainer
-//           key={request.index}
-//           injected={injected}
-//           domElement={request.el}
-//         ></Web3NetworkIdContainer>
-//       )
-//       break
-
-//     case 'providerName':
-//       return (
-//         <Web3ProviderNameContainer
-//           key={request.index}
-//           injected={injected}
-//           domElement={request.el}
-//         ></Web3ProviderNameContainer>
-//       )
-//       break
-
-//     case 'networkName':
-//       return (
-//         <Web3NetworkNameContainer
-//           key={request.index}
-//           keyValue={request.index}
-//           injected={injected}
-//           domElement={request.el}
-//         ></Web3NetworkNameContainer>
-//       )
-//       break
-
-//     case 'enableButton':
-//       return (
-//         <Web3EnableButton
-//           key={request.index} //Needed to prevent React Key issue
-//           injected={injected}
-//           domElement={request.el}
-//         ></Web3EnableButton>
-//       )
-//       break
-
-//     case 'balance':
-//       return (
-//         <Web3BalanceContainer
-//           key={request.index}
-//           injected={injected}
-//           domElement={request.el}
-//         ></Web3BalanceContainer>
-//       )
-//       break
-
-//     case 'gasPrice':
-//       return (
-//         <Web3GasPriceContainer
-//           key={request.index}
-//           keyValue={request.index}
-//           injected={injected}
-//           domElement={request.el}
-//         ></Web3GasPriceContainer>
-//       )
-//       break
-
-//     default:
-//       return null
-//   }
-// }
