@@ -61,12 +61,10 @@ function App() {
 
   //Reducer that will return each container module that was found
   const reducer = request => {
-    console.log("the request", request)
+    console.log('the request', request)
     switch (request.key) {
       case 'erc20':
-        return (
-          <div>HELLO!</div>
-        )
+        return <div>HELLO!</div>
         break
       default:
         return null
@@ -77,7 +75,6 @@ function App() {
   listOfTerms.forEach((value, key, map) => {
     return reducer({ value, key, map })
   })
-
 }
 
 ReactDOM.render(

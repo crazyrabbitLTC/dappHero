@@ -36,7 +36,7 @@ function Web3ERC20Container(props) {
   const [viewFunctions, setViewFunctions] = useState([])
   const [functions, setFunctions] = useState([])
 
-  console.log("in the erc20 container")
+  console.log('in the erc20 container')
   //let contractAddress = document.getElementById('web3-contractAddress').textContent || '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2'
 
   //   document.addEventListener('click', function(e) {
