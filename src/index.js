@@ -63,7 +63,12 @@ function App() {
   const reducer = request => {
     switch (request.key) {
       case 'erc20':
-        return <Web3ERC20Container injected={injected} request={request}></Web3ERC20Container>
+        return (
+          <Web3ERC20Container
+            injected={injected}
+            request={request}
+          ></Web3ERC20Container>
+        )
         break
       default:
         return null
@@ -85,4 +90,3 @@ ReactDOM.render(
   React.createElement(App, {}, null),
   document.getElementById('react-target'),
 )
-

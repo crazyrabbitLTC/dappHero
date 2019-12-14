@@ -28,7 +28,7 @@ import _ from 'lodash'
 let contractAddress = '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2'
 
 function Web3ERC20Container(props) {
-  console.log(props);
+  console.log(props)
   const { injected, request } = props
   const { connected, accounts, lib } = injected
   //const { el, requestString } = request
