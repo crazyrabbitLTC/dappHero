@@ -36,7 +36,6 @@ function ERC20Container(props) {
   const [viewFunctions, setViewFunctions] = useState([])
   const [functions, setFunctions] = useState([])
 
-
   //let contractAddress = document.getElementById('web3-contractAddress').textContent || '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2'
 
   //   document.addEventListener('click', function(e) {
@@ -51,7 +50,6 @@ function ERC20Container(props) {
   foundContainer = foundContainer.textContent
   foundContainer = JSON.parse(foundContainer)
   //console.log('Found: ', foundContainer['contractAddress'])
-
 
   contractAddress = foundContainer['contractAddress']
 

@@ -1,25 +1,23 @@
-
-
 const getEvents = abi => {
   const events = abi.filter(method => {
-    return method.type === "event";
-  });
-  return events;
-};
+    return method.type === 'event'
+  })
+  return events
+}
 
 const getViewFunctions = abi => {
   const viewFunctions = abi.filter(method => {
-    return method.constant;
-  });
-  return viewFunctions;
-};
+    return method.constant
+  })
+  return viewFunctions
+}
 
 const getFunctions = abi => {
   const functions = abi.filter(method => {
-    return !method.constant;
-  });
-  return functions;
-};
+    return !method.constant
+  })
+  return functions
+}
 
 const getFuncRequirements = (listOfFunctions, web3) =>
   listOfFunctions.map(func => {
@@ -30,19 +28,22 @@ const getFuncRequirements = (listOfFunctions, web3) =>
         func.inputs.map(input => {
           return {
             name: input.name,
-            type: input.type
-          };
-        })
+            type: input.type,
+          }
+        }),
       ),
-      outputs: JSON.stringify(func.outputs)
-    };
-  });
-  const getMethods = (obj) => Object.getOwnPropertyNames(obj).filter(item => typeof obj[item] === 'function')
+      outputs: JSON.stringify(func.outputs),
+    }
+  })
+const getMethods = obj =>
+  Object.getOwnPropertyNames(obj).filter(
+    item => typeof obj[item] === 'function',
+  )
 
 export {
   getEvents,
   getViewFunctions,
   getFunctions,
   getFuncRequirements,
-  getMethods
-};
+  getMethods,
+}

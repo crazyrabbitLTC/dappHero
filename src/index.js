@@ -75,7 +75,7 @@ function App() {
     }
   }
 
-  //For all the valid terms found, send them to the reducer to render. 
+  //For all the valid terms found, send them to the reducer to render.
   listOfTerms.forEach((value, key, map) => {
     reducer({ value, key, map })
   })
