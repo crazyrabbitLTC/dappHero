@@ -33,7 +33,7 @@ const getModules = (modules, elements) => {
   })
 
   return {
-    listOfTerms: Object.fromEntries(listOfTerms),
+    elementsByModule: Array.from(listOfTerms),
     unsupported: Array.from(listOfUnsupportedTerms),
   }
 }
