@@ -1,3 +1,5 @@
+import { useState, useEffect} from 'react'
+
 const transfer = async (
   destination,
   amount,
@@ -108,6 +110,18 @@ const isValidAddress = async (lib, address) => {
   return true
 }
 
+function useContractInstance(abi, address, web3) {
+  const [instance, setInstance] = useState(null)
+
+  useEffect(() => {
+    function createInstance(abi, address, web3){
+      const instance = new web3.eth.Contract(abi, address);
+      setInstance(instance);
+    }
+    createInstance(abi, address, web3);
+  },[])
+  return instance
+}
 export {
   transfer,
   getBalance,
@@ -116,4 +130,5 @@ export {
   getTokenDecimals,
   getTotalSupply,
   isValidAddress,
+  useContractInstance,
 }

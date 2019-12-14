@@ -1,4 +1,4 @@
-const erc20 = {
+const abi = {
   abi: [
     {
       anonymous: false,
@@ -329,4 +329,4 @@ const erc20 = {
   ],
 }
 
-export { erc20 as default }
+export { abi as default }

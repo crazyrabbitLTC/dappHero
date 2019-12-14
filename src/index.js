@@ -17,10 +17,13 @@ function App() {
 
   const modules = ['erc20']
 
-  const { elementsByModule, unsupported } = getModules(modules, elements)
+  const { elementsByModule, unsupported } = getModules(
+    modules,
+    elements,
+  )
 
   const reducer = module => {
-     switch (module.moduleName) {
+    switch (module.moduleName) {
       case 'erc20':
         if (connected && accounts.length > 0) {
           return (
@@ -62,23 +65,20 @@ function App() {
     }
   }
 
-  return(
+  return (
     <Fragment>
-    {
-      elementsByModule.map((element, index) => {
-        const moduleName = element[0];
-        const subModules = element[1];
+      {elementsByModule.map((element, index) => {
+        const moduleName = element[0]
+        const subModules = element[1]
         const key = `${moduleName}-${index}`
         return reducer({
           moduleName,
           subModules,
-          key
+          key,
         })
-      })
-    }
+      })}
     </Fragment>
   )
-
 }
 
 ReactDOM.render(
