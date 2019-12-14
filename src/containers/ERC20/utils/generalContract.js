@@ -11,11 +11,11 @@ function getFuncRequirements(listOfFunctions, web3) {
       signature: web3.eth.abi.encodeFunctionSignature(func),
       name: func.name,
       arguments: func.inputs.map(input => {
-          return {
-            name: input.name,
-            type: input.type,
-          }
-        }),
+        return {
+          name: input.name,
+          type: input.type,
+        }
+      }),
       outputs: func.outputs,
     }
   })

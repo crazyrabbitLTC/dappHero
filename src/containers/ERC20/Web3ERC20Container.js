@@ -17,18 +17,15 @@ function Web3ERC20Container(props) {
 
   if (connected && accounts.length > 0) {
     instance = useContractInstance(contractAbi, contractAddress, lib)
-    methods = useGetMethods(contractAbi, lib);
+    methods = useGetMethods(contractAbi, lib)
   }
 
-
-
-if(methods) console.log("Methods", methods[4])
+  if (methods) console.log('Methods', methods[4])
 
   if (instance) {
     return (
       <div>
         <div>View Functions Bitches!</div>
-
       </div>
     )
   } else {
