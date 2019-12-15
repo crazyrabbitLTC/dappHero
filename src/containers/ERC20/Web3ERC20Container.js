@@ -1,8 +1,11 @@
-import React, { useState, useEffect, useCallback } from 'react'
+import React, {
+  Fragment,
+} from 'react'
 import {
   useContractInstance,
   useGetMethods,
 } from './utils/generalContract'
+import FunctionViewStatic from './components/FunctionViewStatic'
 import abi from './utils/tokenABI'
 import _ from 'lodash'
 
@@ -20,13 +23,33 @@ function Web3ERC20Container(props) {
     methods = useGetMethods(contractAbi, lib)
   }
 
-  if (methods) console.log('Methods', methods[4])
+  const reducer = (module, methods, index) => {
+    const { element, requestString, requestStringIndex } = module
+    const request = requestString[requestStringIndex + 1]
+    const method = methods.find(method => {
+      return method.name === request
+    })
 
-  if (instance) {
+    if (method && method.arguments && method.arguments.length === 0) {
+      return (
+        <FunctionViewStatic
+          element={element}
+          method={method}
+          instance={instance}
+          key={`${requestString}-${index}`}
+          injected={injected}
+        ></FunctionViewStatic>
+      )
+    }
+  }
+
+  if (instance && methods) {
     return (
-      <div>
-        <div>View Functions Bitches!</div>
-      </div>
+      <Fragment>
+        {modules.map((module, index) => {
+          return reducer(module, methods, index)
+        })}
+      </Fragment>
     )
   } else {
     return null
