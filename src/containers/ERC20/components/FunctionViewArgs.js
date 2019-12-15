@@ -17,13 +17,20 @@ function FunctionViewArgs(props) {
   const originalInnerText = thisElement.innerText
   let value = useGetStaticFunction(instance, signature)
 
+
+  const indexOfRequest = requestString.indexOf(request);
+
+//The input values must directly follow the request if they are required. 
+
+
+  //console.log(indexOfRequest)
   //TODO: Worry about Multiple Return Values
   //Most likely add second Value after method- return selector
   //Find out how to format the data
   const isFormated = requestString.indexOf('format')
   let convertedValue
 
-  console.log('The request, ', request)
+  //console.log('The request, ', request)
   //TODO: Understand if we need to convert from bigNumber
   //Make sure we are only formatting things that need to be formatted, get this from Arguements!
 

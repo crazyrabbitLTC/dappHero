@@ -32,6 +32,24 @@ function Web3ERC20Container(props) {
     methods = useGetMethods(contractAbi, lib)
   }
 
+//There must be a better way to filter for the method name to avoid duplicates
+  function filterModules(modules) {
+    const tracker = new Set()
+    const filtered = modules.filter(el => {
+      let exists = tracker.has(el.requestString.slice(2, 3)[0]);
+      if (!exists) {
+        tracker.add(el.requestString.slice(2, 3)[0])
+        return true
+      }
+      return false
+    })
+    return filtered
+  }
+
+  let reducedModules = filterModules(modules)
+
+
+
   const reducer = (module, methods, index) => {
     const { element, requestString, requestStringIndex } = module
     const request = requestString[requestStringIndex + 1]
@@ -52,17 +70,30 @@ function Web3ERC20Container(props) {
           request={request}
         ></FunctionViewStatic>
       )
-    } 
+    }
 
     if (method && method.arguments && method.arguments.length > 0) {
-      console.log("Method has an argument")
+      console.log('Method has an argument')
+
+      return (
+        <FunctionViewArgs
+          element={element}
+          method={method}
+          instance={instance}
+          key={`${requestString}-${index}`}
+          injected={injected}
+          tearDown={tearDown}
+          requestString={requestString}
+          request={request}
+        ></FunctionViewArgs>
+      )
     }
   }
 
   if (instance && methods) {
     return (
       <Fragment>
-        {modules.map((module, index) => {
+        {reducedModules.map((module, index) => {
           return reducer(module, methods, index)
         })}
       </Fragment>
