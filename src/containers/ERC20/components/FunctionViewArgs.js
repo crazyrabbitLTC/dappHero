@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react'
 import { useGetStaticFunction } from '../utils/generalContract'
 
-function FunctionViewStatic(props) {
+function FunctionViewArgs(props) {
   const {
     element,
     method,
@@ -23,6 +23,7 @@ function FunctionViewStatic(props) {
   const isFormated = requestString.indexOf('format')
   let convertedValue
 
+  console.log('The request, ', request)
   //TODO: Understand if we need to convert from bigNumber
   //Make sure we are only formatting things that need to be formatted, get this from Arguements!
 
@@ -59,4 +60,4 @@ function FunctionViewStatic(props) {
   return null
 }
 
-export default FunctionViewStatic
+export default FunctionViewArgs

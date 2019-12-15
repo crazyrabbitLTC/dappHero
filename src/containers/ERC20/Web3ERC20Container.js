@@ -1,9 +1,10 @@
-import React, { Fragment, useState } from 'react'
+import React, { Fragment, useEffect } from 'react'
 import {
   useContractInstance,
   useGetMethods,
 } from './utils/generalContract'
 import FunctionViewStatic from './components/FunctionViewStatic'
+import FunctionViewArgs from './components/FunctionViewArgs'
 import abi from './utils/tokenABI'
 import _ from 'lodash'
 
@@ -15,12 +16,16 @@ function Web3ERC20Container(props) {
   const { connected, accounts, lib } = injected
   let instance = null
   let methods = null
+  let tearDown = []
 
-  // const [tearDown, setTearDown] = useState([])
- let tearDown = []
-
-
-  console.log("What is in tearDwon? ", tearDown)
+  useEffect(() => {
+    const runTearDown = () => {
+      tearDown.map(func => {
+        func()
+      })
+    }
+    return runTearDown
+  }, [])
 
   if (connected && accounts.length > 0) {
     instance = useContractInstance(contractAbi, contractAddress, lib)
@@ -43,8 +48,14 @@ function Web3ERC20Container(props) {
           key={`${requestString}-${index}`}
           injected={injected}
           tearDown={tearDown}
+          requestString={requestString}
+          request={request}
         ></FunctionViewStatic>
       )
+    } 
+
+    if (method && method.arguments && method.arguments.length > 0) {
+      console.log("Method has an argument")
     }
   }
 

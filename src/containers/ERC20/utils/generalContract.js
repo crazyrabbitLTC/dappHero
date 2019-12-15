@@ -99,7 +99,6 @@ function useGetStaticFunction(instance, signature) {
       let value
       try {
         value = await instance.methods[signature]().call()
-        console.log('The return value', value)
       } catch (error) {
         console.log('The Function View STatic error: ', error)
       }
