@@ -1,39 +1,29 @@
 import React, { useState, useEffect, useCallback } from 'react'
-import ReactDOM from 'react-dom'
+import {useGetStaticFunction} from '../utils/generalContract'
 
 function FunctionViewStatic(props) {
-  //console.log("The props: ", props)
-  const { element, method, instance, injected } = props
+  console.log("The props: ", props)
+  const { element, method, instance, injected, tearDown } = props
   const { accounts, lib } = injected
   const { signature } = method
+  
+  const thisElement = document.getElementById(element.id)
 
-  function useGetStaticFunction() {
-    const [value, setValue] = useState(null)
+  const originalInnerText = thisElement.innerText
+  const value = useGetStaticFunction(instance, signature)
 
-    useEffect(() => {
-      async function getValue() {
-        let value
-        try {
-          value = await instance.methods[signature]().call()
-          console.log('The return value', value)
-        } catch (error) {
-          console.log('The Function View STatic error: ', error)
-        }
-        setValue(value)
-      }
-      getValue()
-    }, [])
-
-    return value
+  const unmountFunction = () => {
+    thisElement.innerText = originalInnerText;
   }
 
-  const value = useGetStaticFunction();
+tearDown.push(unmountFunction);
 
+  thisElement.innerText = value;
   // return ReactDOM.createPortal(
   //   <Fragment>{this.props.name}</Fragment>,
   //   document.getElementById(this.props.domElement.id),
   // )
-  return <div>Hello doy bitches!</div>
+  return null;
 }
 
 export default FunctionViewStatic

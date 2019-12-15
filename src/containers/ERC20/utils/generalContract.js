@@ -91,10 +91,30 @@ function useEvents(abi) {
   return events
 }
 
+function useGetStaticFunction(instance, signature) {
+  const [value, setValue] = useState(null)
+
+  useEffect(() => {
+    async function getValue() {
+      let value
+      try {
+        value = await instance.methods[signature]().call()
+        console.log('The return value', value)
+      } catch (error) {
+        console.log('The Function View STatic error: ', error)
+      }
+      setValue(value)
+    }
+    getValue()
+  }, [])
+
+  return value
+}
 export {
   getFuncRequirements,
   getMethods,
   useContractInstance,
+  useGetStaticFunction,
   useViewFunctions,
   useGetMethods,
   useEvents,

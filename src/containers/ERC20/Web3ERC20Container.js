@@ -1,6 +1,4 @@
-import React, {
-  Fragment,
-} from 'react'
+import React, { Fragment, useState } from 'react'
 import {
   useContractInstance,
   useGetMethods,
@@ -17,6 +15,12 @@ function Web3ERC20Container(props) {
   const { connected, accounts, lib } = injected
   let instance = null
   let methods = null
+
+  // const [tearDown, setTearDown] = useState([])
+ let tearDown = []
+
+
+  console.log("What is in tearDwon? ", tearDown)
 
   if (connected && accounts.length > 0) {
     instance = useContractInstance(contractAbi, contractAddress, lib)
@@ -38,6 +42,7 @@ function Web3ERC20Container(props) {
           instance={instance}
           key={`${requestString}-${index}`}
           injected={injected}
+          tearDown={tearDown}
         ></FunctionViewStatic>
       )
     }
