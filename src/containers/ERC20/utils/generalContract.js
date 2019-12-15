@@ -91,6 +91,8 @@ function useEvents(abi) {
   return events
 }
 
+//This should perhaps return an object rather than a value
+//Include any potential errors and give info if it worked or failed.
 function useGetStaticFunction(instance, signature) {
   const [value, setValue] = useState(null)
 
@@ -109,6 +111,29 @@ function useGetStaticFunction(instance, signature) {
 
   return value
 }
+
+function callInstance(instance, signature, args, callback) {
+
+  console.log("The arguements passed in are: ", args)
+  const contractCall = async (
+    instance,
+    signature,
+    args,
+    callback,
+  ) => {
+    let value
+    try {
+      value = await instance.methods[signature](...args).call()
+    } catch (error) {
+      console.log('In Call Instance Error: ', error)
+    }
+    callback(value)
+  }
+  contractCall(instance, signature, args, callback)
+}
+
+
+
 export {
   getFuncRequirements,
   getMethods,
@@ -117,4 +142,5 @@ export {
   useViewFunctions,
   useGetMethods,
   useEvents,
+  callInstance,
 }

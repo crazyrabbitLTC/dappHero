@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react'
-import { useGetStaticFunction } from '../utils/generalContract'
+import { callInstance } from '../utils/generalContract'
 
 function FunctionViewArgs(props) {
   const {
@@ -10,18 +10,38 @@ function FunctionViewArgs(props) {
     tearDown,
     requestString,
     request,
+    modules
   } = props
   const { accounts, lib } = injected
   const { signature } = method
   const thisElement = document.getElementById(element.id)
   const originalInnerText = thisElement.innerText
-  let value = useGetStaticFunction(instance, signature)
+  const [value, setValue] = useState(null)
 
 
-  const indexOfRequest = requestString.indexOf(request);
+  //We need to sort based on 
 
-//The input values must directly follow the request if they are required. 
+  const indexOfRequest = requestString.indexOf(request)
+  console.log("Args Request ", request)
+  console.log("Request String: ", requestString);
 
+  //We need to support multiple arguments. 
+  //We need to check that all required arguments as listed on method are satisfied.
+  //We need to check if the argument is coming from somewhere else. 
+
+  const position = requestString.indexOf(request);
+  console.log("The position: ", position);
+  let argument = requestString[position+1];
+  console.log("The ARgument: ", argument)
+
+  if(argument === "user"){
+    argument = [accounts[0]];
+  }
+
+
+  let res = callInstance(instance, signature, argument, setValue)
+
+  //The input values must directly follow the request if they are required.
 
   //console.log(indexOfRequest)
   //TODO: Worry about Multiple Return Values
@@ -48,7 +68,7 @@ function FunctionViewArgs(props) {
       )
     } catch (error) {
       console.log(
-        'Error in the FunctionView Static Converting Units',
+        'Error in the FunctionView ARgs Converting Units',
         error,
       )
     }
