@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react'
-import { callInstance } from '../utils/generalContract'
+import { useGetStaticFunction } from '../utils/generalContract'
 
-function FunctionViewArgs(props) {
+function FunctionViewStatic(props) {
   const {
     element,
     method,
@@ -10,52 +10,19 @@ function FunctionViewArgs(props) {
     tearDown,
     requestString,
     request,
-    modules
   } = props
   const { accounts, lib } = injected
   const { signature } = method
   const thisElement = document.getElementById(element.id)
   const originalInnerText = thisElement.innerText
-  const [value, setValue] = useState(null)
+  let value = useGetStaticFunction(instance, signature)
 
-
-  //We need to sort based on 
-
-  const indexOfRequest = requestString.indexOf(request)
-
-  //We need to support multiple arguments. 
-  //We need to check that all required arguments as listed on method are satisfied.
-  //We need to check if the argument is coming from somewhere else. 
-
-  const position = requestString.indexOf(request);
-  let argument = requestString[position+1];
-
-
-  if(argument === "user"){
-    argument = [accounts[0]];
-  }
-
-
-  let res = callInstance(instance, signature, argument, setValue)
-
-  //The input values must directly follow the request if they are required.
-
-  //console.log(indexOfRequest)
   //TODO: Worry about Multiple Return Values
   //Most likely add second Value after method- return selector
   //Find out how to format the data
   const isFormated = requestString.indexOf('format')
-  let decimals = 2; //Default decimal place is 2
-
-  
-  if(isFormated){
-    let place = requestString.indexOf('dec');
-    decimals = Number(requestString[place+1])
-  }
-
   let convertedValue
 
-  //console.log('The request, ', request)
   //TODO: Understand if we need to convert from bigNumber
   //Make sure we are only formatting things that need to be formatted, get this from Arguements!
 
@@ -71,10 +38,9 @@ function FunctionViewArgs(props) {
         value,
         requestString[isFormated + 1],
       )
-      convertedValue = parseFloat(convertedValue).toFixed(decimals)
     } catch (error) {
       console.log(
-        'Error in the FunctionView ARgs Converting Units',
+        'Error in the FunctionView Static Converting Units',
         error,
       )
     }
@@ -93,4 +59,4 @@ function FunctionViewArgs(props) {
   return null
 }
 
-export default FunctionViewArgs
+export default FunctionViewStatic

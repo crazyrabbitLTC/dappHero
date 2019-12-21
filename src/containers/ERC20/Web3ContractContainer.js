@@ -8,10 +8,14 @@ import FunctionViewArgs from './components/FunctionViewArgs'
 import abi from './utils/tokenABI'
 import _ from 'lodash'
 
-let contractAbi = abi.abi
-let contractAddress = '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2'
+//This should come from the database 
+let contractAbiMock = abi.abi //ABI for ERC20 compatible tokens. 
+let contractAddressMock = '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2' //Wrapped ETHer on Mainnet
 
-function Web3ERC20Container(props) {
+let contractAbi = contractAbiMock
+let contractAddress = contractAddressMock
+
+function Web3ContractContainer(props) {
   const { injected, modules } = props
   const { connected, accounts, lib } = injected
   let instance = null
@@ -105,4 +109,4 @@ function Web3ERC20Container(props) {
   }
 }
 
-export default Web3ERC20Container
+export default Web3ContractContainer

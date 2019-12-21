@@ -7,7 +7,7 @@ import 'regenerator-runtime/runtime'
 import { getModules } from './utils'
 import { useWeb3Injected } from '@openzeppelin/network/react'
 import Web3BoxContainer from './containers/3Box/Web3Box/Web3BoxContainer'
-import Web3ERC20Container from './containers/ERC20/Web3ERC20Container'
+import Web3ContractContainer from './containers/ERC20/Web3ContractContainer'
 import Web3Container from './containers/Web3/Web3Container'
 
 function App() {
@@ -24,14 +24,14 @@ function App() {
 
   const reducer = module => {
     switch (module.moduleName) {
-      case 'erc20':
+      case 'erc20': //Temporary identifyier. 
         if (connected && accounts.length > 0) {
           return (
-            <Web3ERC20Container
+            <Web3ContractContainer
               injected={injected}
               key={module.key}
               modules={module.subModules}
-            ></Web3ERC20Container>
+            ></Web3ContractContainer>
           )
         }
         break

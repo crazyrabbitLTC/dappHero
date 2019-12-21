@@ -21,6 +21,17 @@ function FunctionViewStatic(props) {
   //Most likely add second Value after method- return selector
   //Find out how to format the data
   const isFormated = requestString.indexOf('format')
+
+  let decimals = 2; //Default decimal place is 2
+
+  if(isFormated){
+    let place = requestString.indexOf('dec');
+    
+    decimals = parseInt(requestString[place+1])
+
+  }
+
+
   let convertedValue
 
   //TODO: Understand if we need to convert from bigNumber
@@ -38,6 +49,7 @@ function FunctionViewStatic(props) {
         value,
         requestString[isFormated + 1],
       )
+      convertedValue = parseFloat(convertedValue).toFixed(decimals)
     } catch (error) {
       console.log(
         'Error in the FunctionView Static Converting Units',
