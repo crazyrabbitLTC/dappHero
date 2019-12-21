@@ -22,15 +22,13 @@ function FunctionViewStatic(props) {
   //Find out how to format the data
   const isFormated = requestString.indexOf('format')
 
-  let decimals = 2; //Default decimal place is 2
+  let decimals = 2 //Default decimal place is 2
 
-  if(isFormated){
-    let place = requestString.indexOf('dec');
-    
-    decimals = parseInt(requestString[place+1])
+  if (isFormated) {
+    let place = requestString.indexOf('dec')
 
+    decimals = parseInt(requestString[place + 1])
   }
-
 
   let convertedValue
 

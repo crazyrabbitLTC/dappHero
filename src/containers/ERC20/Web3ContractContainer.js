@@ -8,8 +8,8 @@ import FunctionViewArgs from './components/FunctionViewArgs'
 import abi from './utils/tokenABI'
 import _ from 'lodash'
 
-//This should come from the database 
-let contractAbiMock = abi.abi //ABI for ERC20 compatible tokens. 
+//This should come from the database
+let contractAbiMock = abi.abi //ABI for ERC20 compatible tokens.
 let contractAddressMock = '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2' //Wrapped ETHer on Mainnet
 
 let contractAbi = contractAbiMock

@@ -32,7 +32,6 @@ const transfer = async (
       .estimateGas({ from: accounts[0] })
     gas = Math.min(limit - 1, Math.ceil(gas * 1.2))
 
- 
     gasPrice = await lib.eth.getGasPrice()
     tx = await instance.methods
       .transfer(destination, amount)

@@ -112,7 +112,6 @@ function useGetStaticFunction(instance, signature) {
   return value
 }
 
-
 function callInstance(instance, signature, args, callback) {
   const contractCall = async (
     instance,
@@ -168,7 +167,12 @@ function sendTransaction(
     gasPrice = await lib.eth.getGasPrice()
 
     try {
-      tx = await instance.methods[signature](...args).send({ from: sender, gas, gasPrice, value  })
+      tx = await instance.methods[signature](...args).send({
+        from: sender,
+        gas,
+        gasPrice,
+        value,
+      })
     } catch (error) {
       console.log(
         'Error in send transaction Contract function: ',
@@ -188,5 +192,5 @@ export {
   useGetMethods,
   useEvents,
   callInstance,
-  sendTransaction
+  sendTransaction,
 }

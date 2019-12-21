@@ -10,7 +10,7 @@ function FunctionViewArgs(props) {
     tearDown,
     requestString,
     request,
-    modules
+    modules,
   } = props
   const { accounts, lib } = injected
   const { signature } = method
@@ -18,25 +18,23 @@ function FunctionViewArgs(props) {
   const originalInnerText = thisElement.innerText
   const [value, setValue] = useState(null)
 
-
-  //We need to sort based on 
+  //We need to sort based on
 
   const indexOfRequest = requestString.indexOf(request)
 
-  //We need to support multiple arguments. 
+  //We need to support multiple arguments.
   //We need to check that all required arguments as listed on method are satisfied.
-  //We need to check if the argument is coming from somewhere else. 
+  //We need to check if the argument is coming from somewhere else.
 
-  const position = requestString.indexOf(request);
-  let argument = requestString[position+1];
+  const position = requestString.indexOf(request)
+  let argument = requestString[position + 1]
 
-
-  if(argument === "user"){
-    argument = [accounts[0]];
+  if (argument === 'user') {
+    argument = [accounts[0]]
   }
 
-
-  let res = callInstance(instance, signature, argument, setValue)
+  //This function is a Hook which updates this local state. 
+  callInstance(instance, signature, argument, setValue)
 
   //The input values must directly follow the request if they are required.
 
@@ -45,12 +43,11 @@ function FunctionViewArgs(props) {
   //Most likely add second Value after method- return selector
   //Find out how to format the data
   const isFormated = requestString.indexOf('format')
-  let decimals = 2; //Default decimal place is 2
+  let decimals = 2 //Default decimal place is 2
 
-  
-  if(isFormated){
-    let place = requestString.indexOf('dec');
-    decimals = Number(requestString[place+1])
+  if (isFormated) {
+    let place = requestString.indexOf('dec')
+    decimals = Number(requestString[place + 1])
   }
 
   let convertedValue

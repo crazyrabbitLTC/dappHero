@@ -24,7 +24,7 @@ function App() {
 
   const reducer = module => {
     switch (module.moduleName) {
-      case 'erc20': //Temporary identifyier. 
+      case 'erc20': //Temporary identifyier.
         if (connected && accounts.length > 0) {
           return (
             <Web3ContractContainer

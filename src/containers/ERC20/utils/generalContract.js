@@ -113,8 +113,7 @@ function useGetStaticFunction(instance, signature) {
 }
 
 function callInstance(instance, signature, args, callback) {
-
-  console.log("The arguements passed in are: ", args)
+  console.log('The arguements passed in are: ', args)
   const contractCall = async (
     instance,
     signature,
@@ -131,8 +130,6 @@ function callInstance(instance, signature, args, callback) {
   }
   contractCall(instance, signature, args, callback)
 }
-
-
 
 export {
   getFuncRequirements,
