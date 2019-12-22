@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react'
-import sendTx from "../utils/sendTx"
+import sendTx from '../utils/sendTx'
 import getTriggerElement from '../utils/getTriggerElement'
 
 //TODO: HANDLE RETURN OF MULTIPLE VALUES
@@ -21,7 +21,7 @@ function FunctionSendTx(props) {
 
   const onClick = () => {
     let newObj = {}
-    let inputArgArray = [];
+    let inputArgArray = []
 
     let inputs = modules.filter(module => {
       return (
@@ -29,7 +29,7 @@ function FunctionSendTx(props) {
         module.requestString.length === position + 2
       )
     })
-  
+
     inputs.map(module => {
       // console.log(
       //   'The module request string: ',
@@ -39,22 +39,18 @@ function FunctionSendTx(props) {
         module.requestString[position + 1]
       ] = document.getElementById(module.element.id).value
     })
-    
+
     method.inputs.map(method => {
       inputArgArray.push(newObj[method.name])
-      
     })
 
-    console.log("Input Arg Array: ", inputArgArray)
+    console.log('Input Arg Array: ', inputArgArray)
 
-    sendTx(instance, signature,inputArgArray, accounts)
+    sendTx(instance, signature, inputArgArray, accounts)
   }
-
 
   let triggerElement = getTriggerElement(modules, request, position)
   triggerElement.addEventListener('click', onClick)
-
-
 
   //This Element must first find all the data for each argument.
 

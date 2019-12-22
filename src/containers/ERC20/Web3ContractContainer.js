@@ -62,7 +62,6 @@ function Web3ContractContainer(props) {
 
     //Public methods with no arguments
     if (method && method.constant && method.arguments.length === 0) {
-
       return (
         <FunctionViewStatic
           element={element}
@@ -80,7 +79,6 @@ function Web3ContractContainer(props) {
 
     //Public methods with arguments
     if (method && method.constant && method.arguments.length > 0) {
-      
       return (
         <FunctionViewArgs
           element={element}
@@ -115,7 +113,6 @@ function Web3ContractContainer(props) {
   }
 
   if (instance && methods) {
-
     return (
       <Fragment>
         {reducedModules.map((module, index) => {

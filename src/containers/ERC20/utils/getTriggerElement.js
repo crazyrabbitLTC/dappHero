@@ -10,4 +10,4 @@ const getTriggerElement = (modules, request, position) => {
   return triggerElement
 }
 
-export {getTriggerElement as default}
+export { getTriggerElement as default }
