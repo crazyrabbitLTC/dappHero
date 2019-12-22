@@ -16,5 +16,4 @@ function callInstance(instance, signature, args, callback) {
   contractCall(instance, signature, args, callback)
 }
 
-
-export {callInstance as default}
+export { callInstance as default }

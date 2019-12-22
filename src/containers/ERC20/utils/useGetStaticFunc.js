@@ -1,4 +1,4 @@
-import {useState, useEffect} from 'react'
+import { useState, useEffect } from 'react'
 
 function useGetStaticFunc(instance, signature) {
   const [value, setValue] = useState(null)
@@ -19,4 +19,4 @@ function useGetStaticFunc(instance, signature) {
   return value
 }
 
-export {useGetStaticFunc as default}
+export { useGetStaticFunc as default }

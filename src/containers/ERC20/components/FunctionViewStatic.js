@@ -18,22 +18,15 @@ function FunctionViewStatic(props) {
   const thisElement = document.getElementById(element.id)
   const originalInnerText = thisElement.innerText
 
-
   //Function called on unMount. (Need to check it works)
   const unmountFunction = () => {
     thisElement.innerText = originalInnerText
   }
   tearDown.push(unmountFunction)
 
-
   const value = useGetStaticFunc(instance, signature)
 
-  thisElement.innerText = formatReturnValue(
-    value,
-    requestString,
-    lib
-  )
-
+  thisElement.innerText = formatReturnValue(value, requestString, lib)
 
   return null
 }

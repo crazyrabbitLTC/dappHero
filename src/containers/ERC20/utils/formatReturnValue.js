@@ -41,4 +41,4 @@ function formatReturnValue(value, requestString, lib) {
   }
 }
 
-export {formatReturnValue as default}
+export { formatReturnValue as default }

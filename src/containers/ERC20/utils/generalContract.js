@@ -91,10 +91,6 @@ function useEvents(abi) {
   return events
 }
 
-
-
-
-
 export {
   getFuncRequirements,
   getMethods,

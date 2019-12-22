@@ -2,7 +2,6 @@ import React, { useState, useEffect, useCallback } from 'react'
 import callInstance from '../utils/callInstance'
 import formatReturnValue from '../utils/formatReturnValue'
 
-
 //TODO: HANDLE RETURN OF MULTIPLE VALUES
 function FunctionViewArgs(props) {
   const {
@@ -24,7 +23,7 @@ function FunctionViewArgs(props) {
   const unMountFunction = () => {
     thisElement.innerText = originalInnerText
   }
-  
+
   tearDown.push(unMountFunction)
 
   const position = requestString.indexOf(request)
@@ -37,11 +36,7 @@ function FunctionViewArgs(props) {
 
   callInstance(instance, signature, argument, setValue)
 
-  thisElement.innerText = formatReturnValue(
-    value,
-    requestString,
-    lib
-  )
+  thisElement.innerText = formatReturnValue(value, requestString, lib)
 
   return null
 }

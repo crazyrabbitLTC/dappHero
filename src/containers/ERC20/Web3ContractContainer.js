@@ -5,6 +5,7 @@ import {
 } from './utils/generalContract'
 import FunctionViewStatic from './components/FunctionViewStatic'
 import FunctionViewArgs from './components/FunctionViewArgs'
+import FunctionSendTx from './components/FunctionSendTx'
 import abi from './utils/tokenABI'
 import _ from 'lodash'
 
@@ -59,7 +60,9 @@ function Web3ContractContainer(props) {
       return method.name === request
     })
 
+    //Public methods with no arguments
     if (method && method.constant && method.arguments.length === 0) {
+
       return (
         <FunctionViewStatic
           element={element}
@@ -75,7 +78,9 @@ function Web3ContractContainer(props) {
       )
     }
 
+    //Public methods with arguments
     if (method && method.constant && method.arguments.length > 0) {
+      
       return (
         <FunctionViewArgs
           element={element}
@@ -91,12 +96,26 @@ function Web3ContractContainer(props) {
       )
     }
 
+    //Methods requiring sending a transaction
     if (method && !method.constant) {
-      return null
+      return (
+        <FunctionSendTx
+          element={element}
+          method={method}
+          instance={instance}
+          key={`${requestString}-${index}`}
+          injected={injected}
+          tearDown={tearDown}
+          requestString={requestString}
+          request={request}
+          modules={modules}
+        ></FunctionSendTx>
+      )
     }
   }
 
   if (instance && methods) {
+
     return (
       <Fragment>
         {reducedModules.map((module, index) => {
