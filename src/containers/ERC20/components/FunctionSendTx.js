@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useCallback } from 'react'
 import sendTx from '../utils/sendTx'
+import getTxFieldInputs from '../utils/getTxFieldInputs'
 import getTriggerElement from '../utils/getTriggerElement'
 
-//TODO: HANDLE RETURN OF MULTIPLE VALUES
 function FunctionSendTx(props) {
   const {
     element,
@@ -17,48 +17,33 @@ function FunctionSendTx(props) {
   const { signature } = method
   const position = requestString.indexOf(request)
 
-  console.log('This The method: ', method)
+  const defaultState = {
+    transactionHash: null,
+    confirmations: null,
+    receipt: null,
+    error: null,
+  }
 
+  const [tx, setTx] = useState(defaultState)
+  console.log('The TX is:  ', tx)
+  
   const onClick = () => {
-    let newObj = {}
-    let inputArgArray = []
+    const { inputFields, txArgArray } = getTxFieldInputs(
+      modules,
+      position,
+      request,
+      method,
+    )
 
-    let inputs = modules.filter(module => {
-      return (
-        module.requestString[position] === request &&
-        module.requestString.length === position + 2
-      )
-    })
+    sendTx(instance, signature, txArgArray, accounts, setTx, tx)
 
-    inputs.map(module => {
-      // console.log(
-      //   'The module request string: ',
-      //   module.requestString[position + 1],
-      // )
-      newObj[
-        module.requestString[position + 1]
-      ] = document.getElementById(module.element.id).value
-    })
-
-    method.inputs.map(method => {
-      inputArgArray.push(newObj[method.name])
-    })
-
-    console.log('Input Arg Array: ', inputArgArray)
-
-    sendTx(instance, signature, inputArgArray, accounts)
-
-    inputs.map(module => {
+    inputFields.map(module => {
       document.getElementById(module.element.id).value = null
     })
   }
 
   let triggerElement = getTriggerElement(modules, request, position)
   triggerElement.addEventListener('click', onClick)
-
-  //This Element must first find all the data for each argument.
-
-  //Filter for all the elements/modules which match this request.
 
   return null
 }
