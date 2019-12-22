@@ -47,6 +47,10 @@ function FunctionSendTx(props) {
     console.log('Input Arg Array: ', inputArgArray)
 
     sendTx(instance, signature, inputArgArray, accounts)
+
+    inputs.map(module => {
+      document.getElementById(module.element.id).value = null
+    })
   }
 
   let triggerElement = getTriggerElement(modules, request, position)
