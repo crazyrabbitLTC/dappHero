@@ -42,7 +42,7 @@
     "@openzeppelin/contracts": "^2.4.0",
     "@openzeppelin/network": "^0.2.10",
     "core-js": "^3.4.4",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "react-router-dom": "^5.1.2",
