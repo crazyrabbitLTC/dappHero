@@ -39,7 +39,7 @@
   },
   "dependencies": {
     "3box": "^1.13.2",
-    "@openzeppelin/contracts": "^2.4.0",
+    "@openzeppelin/contracts": "^4.4.2",
     "@openzeppelin/network": "^0.2.10",
     "core-js": "^3.4.4",
     "jquery": "^3.4.1",
